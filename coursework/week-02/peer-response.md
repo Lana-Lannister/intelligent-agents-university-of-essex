@@ -1,4 +1,4 @@
-# Week 2 Discussion Forum — Peer Response
+# Week 2 Discussion Forum - Peer Response
 
 **Author:** Lana Menezes Fidelis
 **In reply to:** Lara Koller

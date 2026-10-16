@@ -8,6 +8,7 @@ export interface WeekItem {
   description?: string;
   href?: string;
   body?: string[];
+  code?: string[];
   references?: string[];
 }
 
@@ -25,7 +26,7 @@ export interface WeekSummary {
 }
 
 export interface WeekDetail extends WeekSummary {
-  assessment?: AssessmentInfo;
+  sections?: AssessmentInfo[];
 }
 
 const TOTAL_WEEKS = 12;
@@ -40,7 +41,7 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
     title: "Week 1",
     status: "complete",
     summary: "Discussion forum: why agent-based systems emerged.",
-    assessment: {
+    sections: [{
       title: "Discussion Forum",
       description:
         "Initial post on why agent-based computing emerged and how it benefits organisations.",
@@ -63,14 +64,14 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
       ],
-    },
+    }],
   },
   2: {
     week: 2,
     title: "Week 2",
     status: "complete",
     summary: "Discussion forum: initial post and peer response.",
-    assessment: {
+    sections: [{
       title: "Discussion Forum",
       description:
         "Peer's initial post on agent-based systems and LLM-powered research agents, plus my response.",
@@ -117,7 +118,113 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
       ],
-    },
+    }],
+  },
+  3: {
+    week: 3,
+    title: "Week 3",
+    status: "complete",
+    summary: "Discussion forum: summary post reflecting on peer feedback.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Summary post reflecting on team discussion of my Week 3 thread, revising my position on agent autonomy, coordination and human oversight.",
+      items: [
+        {
+          title: "Summary Post",
+          author: "Lana Menezes Fidelis (own thread)",
+          description:
+            "Reflects on peer feedback (Anne, Ali, Sergei) to revise my position: autonomy is only valuable when matched by effective coordination, semantic alignment and appropriate human oversight.",
+          href: courseworkBlobUrl("coursework/week-03/summary-post.md"),
+          body: [
+            "My post linked the rise of agent-based systems to distributed computing and advances in artificial intelligence. I now see their value as conditional: autonomy enables adaptation, but effective coordination determines whether that adaptation serves organisational goals (Jennings, 2000).",
+            "Anne's feedback refined my distinction between objects and agents. The difference concerns control over behaviour: an agent can evaluate requests against its objectives rather than simply execute an invoked operation. Reactive architectures prioritise responses, deliberative architectures use symbolic reasoning, and hybrid architectures combine both (Wooldridge and Jennings, 1995). BDI models organise deliberation around beliefs, desires and intentions, making them relevant where agents must maintain commitments while circumstances change.",
+            "However, independent decision-making introduces semantic and strategic difficulties. Anne's vocabulary example illustrates why exchanging valid messages does not establish shared understanding. Payne and Tamma (2014) demonstrate negotiated ontology alignment under incomplete knowledge; this does not establish that commercially competing agents will disclose information honestly. I would therefore require validated terminology mappings and explicit contractual constraints before agents commit organisational resources.",
+            "Ali's critique also challenged my assumption that decentralisation automatically improves resilience. Sergei's retrieval example sharpened this distinction: completing a task despite source failure can conceal reduced evidence coverage. I would consequently evaluate service continuity alongside output quality, failure visibility and coordination costs, using simulated disruptions before deployment.",
+            "In supply chains, I would automate stock monitoring and routine replenishment within agreed limits, while requiring human approval for unfamiliar suppliers, substantial expenditure or unresolved semantic conflicts. This applies Parasuraman, Sheridan and Wickens' (2000) distinction between automating information acquisition, analysis, decision selection and action implementation.",
+            "My revised position is that agent-based systems suit distributed, changing environments with autonomous stakeholders. Their benefits include responsiveness and flexible task allocation, but simpler centralised approaches remain preferable when coordination overhead exceeds those benefits. Autonomy should therefore be justified through organisational outcomes.",
+          ],
+          references: [
+            "Jennings, N.R. (2000) 'On agent-based software engineering', Artificial Intelligence, 117(2), pp. 277–296. Available at: https://doi.org/10.1016/S0004-3702(99)00107-1.",
+            "Parasuraman, R., Sheridan, T.B. and Wickens, C.D. (2000) 'A model for types and levels of human interaction with automation', IEEE Transactions on Systems, Man, and Cybernetics – Part A: Systems and Humans, 30(3), pp. 286–297. Available at: https://doi.org/10.1109/3468.844354.",
+            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Paris, France, 5–9 May. International Foundation for Autonomous Agents and Multiagent Systems, pp. 517–524. (Accessed: 16 October 2026).",
+            "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115–152. Available at: https://doi.org/10.1017/S0269888900008122.",
+          ],
+        },
+      ],
+    }],
+  },
+  5: {
+    week: 5,
+    title: "Week 5",
+    status: "complete",
+    summary: "Discussion forum: Collaborative Discussion 2 - Agent Communication Languages.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Initial post comparing KQML-style Agent Communication Languages with direct method invocation in conventional programming.",
+      items: [
+        {
+          title: "Initial Post",
+          description:
+            "KQML's performative-based message design versus the semantic weaknesses later evaluation work exposed, contrasted with tightly-coupled method invocation in Python/Java.",
+          href: courseworkBlobUrl("coursework/week-05/discussion-post.md"),
+          body: [
+            "Agent Communication Languages (ACLs) provide a standardised way for autonomous agents to exchange information, requests, and intentions within open, heterogeneous multi-agent systems. KQML, one of the earliest and most influential ACLs, emerged from the ARPA Knowledge Sharing Effort as both a message format and a message-handling protocol intended to support run-time knowledge sharing among agents. Rather than specifying how content is represented, KQML wraps a message in a \"performative\", a speech-act label such as tell, ask-if, or achieve, that makes explicit the sender's communicative intent while remaining agnostic to the underlying content language (Finin, Fritzson, McKay and McEntire, 1994). This layered design, separating message-level intent from content and transport, is arguably KQML's central advantage: agents built on different platforms, in different programming languages, and with different internal knowledge representations can still interoperate provided they share enough vocabulary to interpret the performatives and content exchanged.",
+            "This flexibility, however, is also a source of weakness. Later evaluation work found that the practical desiderata for such languages span form, content, semantics, implementation, networking, environment, and reliability, and that KQML fell short on several of these fronts, particularly around a rigorously agreed semantics for its performative set (Mayfield, Labrou and Finin, 1995). Because two implementations could interpret the same performative differently, interoperability guarantees were weaker than the specification suggested, a criticism echoed in later surveys of the field noting that semantic specification issues dominated much of the debate around ACLs (Labrou, Finin and Peng, 1999). ACLs also introduce parsing and protocol overhead that simpler mechanisms avoid entirely.",
+            "Method invocation in Python or Java is a fundamentally different model: caller and callee are tightly coupled through a shared interface, type system, and usually a common runtime, and a call carries no negotiable intent, only direct procedural execution. This suits closed, trusted systems well, but is poorly matched to the open, dynamic environments that motivated agent research in the first place, where designers cannot assume shared implementation details in advance. Wooldridge and Jennings frame this distinction in terms of agent theories, architectures, and languages as separate but related concerns, with agent languages existing precisely to embody the autonomy and flexibility that conventional software engineering models do not (Wooldridge and Jennings, 1995). ACLs therefore trade raw efficiency and simplicity for semantic richness and openness.",
+          ],
+          references: [
+            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', Proceedings of the Third International Conference on Information and Knowledge Management (CIKM '94). New York: ACM.",
+            "Labrou, Y., Finin, T. and Peng, Y. (1999) 'Agent communication languages: the current landscape', IEEE Intelligent Systems, 14(2), pp. 45–52.",
+            "Mayfield, J., Labrou, Y. and Finin, T. (1995) 'Evaluation of KQML as an agent communication language', in Intelligent Agents II: Proceedings of the Second International Workshop on Agent Theories, Architectures, and Languages (ATAL-95), LNAI 1037. Montréal: Springer-Verlag.",
+            "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115–152.",
+          ],
+        },
+      ],
+    }],
+  },
+  6: {
+    week: 6,
+    title: "Week 6",
+    status: "complete",
+    summary: "Exercise: Creating Agent Dialogues (KQML/KIF).",
+    sections: [{
+      title: "Activity: Creating Agent Dialogues",
+      description:
+        "A KQML/KIF dialogue between two agents, Alice (procurement) and Bob (warehouse stock control), querying stock levels and HDMI ports for 50-inch televisions.",
+      items: [
+        {
+          title: "Agent Dialogue: Alice and Bob",
+          description:
+            "Alice asks Bob about the available stock of 50-inch televisions and the number of HDMI ports they have, using ask-one/tell KQML performatives over KIF content.",
+          href: courseworkBlobUrl("coursework/week-06/agent-dialogue.md"),
+          code: [
+            "(ask-one\n  :sender       Alice\n  :receiver     Bob\n  :content      (stock-level TV-50IN ?quantity)\n  :reply-with   q1\n  :language     KIF\n  :ontology     warehouse-inventory\n)",
+            "(tell\n  :sender       Bob\n  :receiver     Alice\n  :content      (stock-level TV-50IN 42)\n  :in-reply-to  q1\n  :language     KIF\n  :ontology     warehouse-inventory\n)",
+            "(ask-one\n  :sender       Alice\n  :receiver     Bob\n  :content      (hdmi-ports TV-50IN ?count)\n  :reply-with   q2\n  :language     KIF\n  :ontology     warehouse-inventory\n)",
+            "(tell\n  :sender       Bob\n  :receiver     Alice\n  :content      (hdmi-ports TV-50IN 4)\n  :in-reply-to  q2\n  :language     KIF\n  :ontology     warehouse-inventory\n)",
+          ],
+          body: [
+            "Why an agent communication language, not a direct call: Genesereth and Ketchpel (1994) frame open, cross-organisation coordination as the core motivation for ACLs - Alice and Bob may be built on different platforms with no shared implementation, so coordination has to happen through messages whose meaning does not depend on either side's internal code. KQML's performative layer also preserves agent autonomy: Bob is not obliged to execute Alice's ask-one the way an object is obliged to execute an invoked method, which is the reactive-but-independent property Wooldridge and Jennings (1995) use to distinguish agents from objects.",
+            "Theoretical grounding: KQML's performatives operationalise speech act theory (Austin, 1962; Searle, 1969) - tell is an assertive, ask-one is a directive. Mayfield, Labrou and Finin (1995) observed that KQML left these performatives without a rigorously agreed formal semantics; Cohen and Levesque (1995) addressed this by defining each act via feasibility preconditions and rational effects grounded in a theory of rational action, a semantics FIPA later adopted for FIPA-ACL (FIPA, 2002). KIF itself is grounded in first-order predicate logic (Genesereth and Fikes, 1992), which is what licenses an unbound variable such as ?quantity inside a message: ask-one is defined as finding a binding that makes the open sentence true.",
+            "Design notes: ask-one (not ask-all) is used because both questions expect a single determinate value for a specific product, not a set of matching facts. The :reply-with/:in-reply-to pair lets Alice run both questions concurrently without ambiguity about which tell answers which ask-one. Both agents share the warehouse-inventory ontology so that stock-level and hdmi-ports resolve to the same predicates on both sides - KQML's performative layer alone does not guarantee this.",
+            "Limitation: this dialogue shows the successful path only. A complete exchange would also need a refusal branch (e.g. Bob replying sorry for an unrecognised product code), which KQML supports but which the activity's single known product does not exercise. Without an agreed precondition for sorry versus a null tell, Alice cannot reliably distinguish \"the product does not exist\" from \"the stock level is zero\" unless the ontology defines both outcomes in advance.",
+          ],
+          references: [
+            "Austin, J.L. (1962) How to Do Things with Words. Oxford: Clarendon Press.",
+            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', Proceedings of the First International Conference on Multiagent Systems (ICMAS-95). San Francisco, CA, 12-14 June. Menlo Park, CA: AAAI Press, pp. 65-72.",
+            "FIPA (2002) FIPA ACL Message Structure Specification, SC00061G. Geneva: Foundation for Intelligent Physical Agents.",
+            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', Proceedings of the Third International Conference on Information and Knowledge Management (CIKM '94). New York: ACM.",
+            "Genesereth, M.R. and Fikes, R.E. (1992) Knowledge Interchange Format, Version 3.0 Reference Manual. Technical Report Logic-92-1. Stanford, CA: Stanford University Logic Group.",
+            "Genesereth, M.R. and Ketchpel, S.P. (1994) 'Software agents', Communications of the ACM, 37(7), pp. 48-53.",
+            "Mayfield, J., Labrou, Y. and Finin, T. (1995) 'Evaluation of KQML as an agent communication language', in Intelligent Agents II: Proceedings of the Second International Workshop on Agent Theories, Architectures, and Languages (ATAL-95), LNAI 1037. Montreal: Springer-Verlag.",
+            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
+            "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115-152.",
+          ],
+        },
+      ],
+    }],
   },
 };
 

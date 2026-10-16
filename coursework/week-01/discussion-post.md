@@ -1,4 +1,4 @@
-# Week 1 Discussion Forum — Initial Post
+# Week 1 Discussion Forum - Initial Post
 
 **Author:** Lana Menezes Fidelis
 **Posted:** Friday, 31 July 2026, 3:21 PM

@@ -1,4 +1,4 @@
-# Week 2 Discussion Forum — Initial Post (Lara Koller)
+# Week 2 Discussion Forum - Initial Post (Lara Koller)
 
 **Author:** Lara Koller
 **Posted:** Sunday, 2 August 2026, 1:34 AM

@@ -1,9 +1,9 @@
 # Week 05 coursework
 
-**Status:** ⬜ Not started.
+**Status:** ✅ Complete - Discussion Forum.
 
 ## Files
 
-_None yet._ Place this week's raw artifacts here, one file per artifact (e.g. `discussion-post.md`, `peer-response.md`, `notebook.ipynb`, datasets, reports).
+- [`discussion-post.md`](discussion-post.md) - Initial post by Lana Menezes Fidelis (27 August 2026), Collaborative Discussion 2: Agent Communication Languages (KQML vs. method invocation).
 
-Once added, mirror the content into a new `weekDetails[5]` entry in [`lib/weeks.ts`](../../lib/weeks.ts) so it renders on the e-portfolio site at `/weeks/5`, and list the files above and in [`coursework/README.md`](../README.md).
+Rendered on the e-portfolio site at `/weeks/5` (content mirrored into the `weekDetails[5]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).

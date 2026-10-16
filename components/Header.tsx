@@ -9,6 +9,12 @@ export default function Header() {
           {siteConfig.studentName}
         </Link>
         <nav className="flex items-center gap-5 text-sm">
+          <Link href="/project" className="text-zinc-500 hover:text-zinc-900">
+            Final Project
+          </Link>
+          <Link href="/reflections" className="text-zinc-500 hover:text-zinc-900">
+            Reflections
+          </Link>
           <a
             href={siteConfig.githubRepo}
             target="_blank"

@@ -1,9 +1,9 @@
 # Week 06 coursework
 
-**Status:** ⬜ Not started.
+**Status:** ✅ Complete - Activity: Creating Agent Dialogues.
 
 ## Files
 
-_None yet._ Place this week's raw artifacts here, one file per artifact (e.g. `discussion-post.md`, `peer-response.md`, `notebook.ipynb`, datasets, reports).
+- [`agent-dialogue.md`](agent-dialogue.md) - KQML/KIF dialogue between Alice (procurement agent) and Bob (warehouse stock-control agent), querying stock levels and HDMI ports for 50-inch televisions. Includes discussion of the motivation for agent communication languages (Genesereth and Ketchpel, 1994) and their grounding in speech act theory and formal semantics (Austin, 1962; Searle, 1969; Cohen and Levesque, 1995; FIPA, 2002).
 
-Once added, mirror the content into a new `weekDetails[6]` entry in [`lib/weeks.ts`](../../lib/weeks.ts) so it renders on the e-portfolio site at `/weeks/6`, and list the files above and in [`coursework/README.md`](../README.md).
+Rendered on the e-portfolio site at `/weeks/6` (content mirrored into the `weekDetails[6]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).

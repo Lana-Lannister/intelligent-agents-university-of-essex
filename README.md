@@ -13,16 +13,29 @@ Live site: https://intelligent-agents-university-of-essex.vercel.app/
 ## Repository structure
 
 ```
-app/                  Next.js routes (home page, /weeks/[week] detail pages)
-components/           Shared React components (Header, Hero, Footer, WeekCard)
-lib/                  Site config and weekly content data (lib/weeks.ts)
+app/                  Next.js routes: home page, /weeks/[week], /project, /reflections
+components/           Shared React components (Header, Hero, Footer, WeekCard, ContentSection)
+lib/                  Site config and content data (weeks.ts, project.ts, reflections.ts)
 public/               Static assets
-coursework/           Per-week source files (discussion posts, notebooks, datasets, scripts)
+coursework/           Per-week source files, plus project/ and reflections/
 ```
 
 ## Finding a week's work
 
-Each week has its own folder under [`coursework/week-NN/`](coursework/), with a `README.md` listing its files and status. [`coursework/README.md`](coursework/README.md) is the index of all 12 weeks — start there to see what's been submitted and what's outstanding. The same content also renders on the live site at `/weeks/NN`.
+Each week has its own folder under [`coursework/week-NN/`](coursework/), with a `README.md` listing its files and status. [`coursework/README.md`](coursework/README.md) is the index of all 12 weeks plus the two cross-cutting sections below - start there to see what's been submitted and what's outstanding. The same content also renders on the live site.
+
+## Module requirements mapping
+
+This e-portfolio is built to satisfy the Unit 12 individual e-portfolio brief:
+
+| Requirement | Where it lives |
+| ----------- | --------------- |
+| Exercise outputs (scripts, agent implementations, system designs) | `coursework/week-NN/`, rendered at `/weeks/NN` |
+| Forum analysis and contributions | `coursework/week-NN/*-post.md`, rendered at `/weeks/NN` |
+| Critical evaluation of the final project (design week 7, implementation week 11) | [`coursework/project/`](coursework/project/), rendered at `/project` |
+| Reflective commentary + 3 case studies (bias, AI safety, XAI) | [`coursework/reflections/`](coursework/reflections/), rendered at `/reflections` |
+
+The separate Turnitin submission (a single document with this site's URL in the header) draws its word-capped reflective section and case studies from `/reflections`, and its critical evaluation from `/project`.
 
 ## Local development
 
