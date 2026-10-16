@@ -31,6 +31,20 @@ export default function ReflectionsPage() {
             {paragraph}
           </p>
         ))}
+        {reflectiveCommentary.references && reflectiveCommentary.references.length > 0 ? (
+          <div className="border-t border-zinc-200 pt-4">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+              References
+            </h3>
+            <ul className="mt-2 flex flex-col gap-1.5">
+              {reflectiveCommentary.references.map((reference) => (
+                <li key={reference} className="text-xs text-zinc-600">
+                  {reference}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </section>
 
       <div className="flex flex-col gap-6">

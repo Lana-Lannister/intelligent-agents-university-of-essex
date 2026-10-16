@@ -24,4 +24,4 @@ In addition to the 12 weeks above, the e-portfolio has two cross-cutting section
 | Section | Status | Contents |
 | ------- | ------ | -------- |
 | [Final Project](project/) | ⬜ Design and critical evaluation outstanding (implementation complete) | Implementation: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent); design ([Week 7](week-07/)) still outstanding |
-| [Reflections](reflections/) | ⬜ Not started | Reflective commentary + 3 case studies (bias, AI safety, XAI) |
+| [Reflections](reflections/) | ⬜ Commentary complete; 3 case studies outstanding | [Reflective commentary](reflections/commentary.md); case studies (bias, AI safety, XAI) still to be written |
