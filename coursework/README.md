@@ -12,16 +12,16 @@ This same content is mirrored into [`lib/weeks.ts`](../lib/weeks.ts) so it rende
 | [04](week-04/) | ⬜ Not started | - |
 | [05](week-05/) | ✅ Complete | Discussion forum: [initial post](week-05/discussion-post.md) |
 | [06](week-06/) | ✅ Complete | Activity: [agent dialogue (KQML/KIF)](week-06/agent-dialogue.md) |
-| [07](week-07/) | ⬜ Not started | - |
-| [08](week-08/) | ⬜ Not started | - |
-| [09](week-09/) | ⬜ Not started | - |
-| [10](week-10/) | ⬜ Not started | - |
-| [11](week-11/) | ⬜ Not started | - |
+| [07](week-07/) | ✅ Discussion forum complete (project design outstanding) | [initial post (Dragos Hont)](week-07/discussion-post.md), [peer response](week-07/peer-response.md), [initial post (Yasmin Almeida Ferrera)](week-07/discussion-post-yasmin.md), [peer response](week-07/peer-response-yasmin.md) |
+| [08](week-08/) | ✅ Complete | Activity: [constituency parse trees](week-08/parse-trees.md) |
+| [09](week-09/) | ✅ Complete | Discussion forum: [initial post](week-09/discussion-post.md) |
+| [10](week-10/) | ✅ Complete | Discussion forum: [initial post (Aldana Mohammed A A Al-Dosari)](week-10/discussion-post.md), [peer response](week-10/peer-response.md), [initial post (Anne Dayer)](week-10/discussion-post-anne.md), [peer response](week-10/peer-response-anne.md); Activity: [Deep Learning in Action](week-10/deep-learning-in-action.md) |
+| [11](week-11/) | ✅ Complete | Discussion forum: [summary post](week-11/summary-post.md); Implemented solution: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent) |
 | [12](week-12/) | ⬜ Not started | - |
 
 In addition to the 12 weeks above, the e-portfolio has two cross-cutting sections required by the module brief:
 
 | Section | Status | Contents |
 | ------- | ------ | -------- |
-| [Final Project](project/) | ⬜ Not started | Critical evaluation of the group project: design ([Week 7](week-07/)) and implementation ([Week 11](week-11/)) |
+| [Final Project](project/) | ⬜ Design and critical evaluation outstanding (implementation complete) | Implementation: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent); design ([Week 7](week-07/)) still outstanding |
 | [Reflections](reflections/) | ⬜ Not started | Reflective commentary + 3 case studies (bias, AI safety, XAI) |

@@ -7,6 +7,7 @@ export interface WeekItem {
   author?: string;
   description?: string;
   href?: string;
+  highlightHref?: boolean;
   body?: string[];
   code?: string[];
   references?: string[];
@@ -33,6 +34,17 @@ const TOTAL_WEEKS = 12;
 
 function courseworkBlobUrl(path: string): string {
   return `${siteConfig.githubRepo}/blob/main/${path}`;
+}
+
+export function slugify(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getWeekItemCount(week: WeekDetail): number {
+  return (week.sections ?? []).reduce((count, section) => count + section.items.length, 0);
 }
 
 const weekDetails: Partial<Record<number, WeekDetail>> = {
@@ -221,6 +233,364 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
             "Mayfield, J., Labrou, Y. and Finin, T. (1995) 'Evaluation of KQML as an agent communication language', in Intelligent Agents II: Proceedings of the Second International Workshop on Agent Theories, Architectures, and Languages (ATAL-95), LNAI 1037. Montreal: Springer-Verlag.",
             "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
             "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115-152.",
+          ],
+        },
+      ],
+    }],
+  },
+  7: {
+    week: 7,
+    title: "Week 7",
+    status: "in-progress",
+    summary: "Discussion forum complete; project design phase outstanding.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Two peer threads on where to draw the line between deterministic method calls and KQML-style agent messaging, plus my responses on KQML's weak formal semantics, FIPA-ACL, and the control-versus-autonomy trade-off.",
+      items: [
+        {
+          title: "Initial Post (Thread 1)",
+          author: "Dragos Hont",
+          description:
+            "A practical boundary between deterministic internal operations (plain method calls) and autonomous goal interpretation (KQML-style messaging), grounded in Searle's (1969) speech act theory.",
+          href: courseworkBlobUrl("coursework/week-07/discussion-post.md"),
+          body: [
+            "A method call invokes a known operation through an agreed interface, so its purpose is already defined by the code. An agent message may need to express both its content and how the receiver should treat it. Searle (1969) separates propositional content from acts such as stating, questioning or commanding. KQML applies this distinction through a performative that makes the sender's intent explicit (Finin et al., 1994).",
+            "I would keep DOI deduplication as an ordinary Python method called by the orchestrator. It is deterministic within one controlled application, so KQML would add message handling and ontology agreement where no autonomous interpretation is needed.",
+            "I would use KQML-style messaging (Finin et al., 1994) when the Retrieval Agent asks the Planning Agent to reformulate a query. The performative perform marks reformulation as a requested action rather than a report of insufficient evidence, but different ontologies could still give that evidence different meanings (Payne and Tamma, 2014).",
+            "My boundary is practical. I would keep deterministic internal operations as method calls because their interfaces already define what should happen. I would use KQML-style messages where an autonomous agent must interpret a requested goal. This flexibility requires agreement on ontology and semantics, and the same terms may still be understood differently, so interoperability cannot be assumed (Payne and Tamma, 2014).",
+          ],
+          references: [
+            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', in Proceedings of the Third International Conference on Information and Knowledge Management. New York: ACM, pp. 456-463. doi:10.1145/191246.191322.",
+            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Richland, SC: International Foundation for Autonomous Agents and Multiagent Systems, pp. 517-524.",
+            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 1)",
+          author: "Lana Menezes Fidelis (in reply to Dragos Hont)",
+          description:
+            "Response noting KQML's lack of rigorous formal semantics (Cohen and Levesque, 1995), FIPA-ACL as a more formally grounded successor, and Payne and Tamma's (2014) negotiation protocol as a more realistic safeguard than assuming a shared ontology upfront.",
+          href: courseworkBlobUrl("coursework/week-07/peer-response.md"),
+          body: [
+            "Thanks for a well-structured post, Dragos, the boundary you draw between deterministic operations and autonomous goal interpretation is a useful practical heuristic, and grounding it in Searle's (1969) speech act theory gives it theoretical weight rather than just being a coding convention.",
+            "One thing worth adding is that KQML's performatives, while making intent explicit, were criticised early on for lacking a rigorous formal semantics. Cohen and Levesque (1995) argued that KQML defined its speech acts largely through informal English descriptions, which meant two implementations could interpret the same performative (e.g. achieve or tell) inconsistently, essentially the same interoperability risk you flag via Payne and Tamma (2014), but occurring at the level of the language itself rather than just the ontology.",
+            "This is partly why FIPA-ACL (FIPA, 2002) followed, replacing KQML's ad hoc semantics with a semantic language grounded more formally in agents' beliefs and intentions. So a possible refinement to your practical boundary: even where you'd choose KQML-style messaging for the Retrieval-Planning Agent exchange, the specific dialect matters. FIPA-ACL's more constrained semantics would reduce (though not eliminate) the ambiguity you're already anticipating.",
+            "As a mitigation for the ontology mismatch you raise, Payne and Tamma's (2014) own negotiation protocol is instructive here: rather than assuming a shared ontology upfront, agents iteratively exchange candidate mappings and refine correspondences. That seems like a more realistic safeguard than a single agreed ontology, especially in an open multi-agent setting.",
+          ],
+          references: [
+            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', in Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95). Cambridge, MA: AAAI Press/MIT Press, pp. 65-72.",
+            "FIPA (2002) FIPA ACL Message Structure Specification. Geneva: Foundation for Intelligent Physical Agents.",
+          ],
+        },
+        {
+          title: "Initial Post (Thread 2)",
+          author: "Yasmin Almeida Ferrera",
+          description:
+            "Frames the KQML-versus-method-invocation question as control versus autonomy, connecting ACLs to MCP and multi-agent LLM debate research.",
+          href: courseworkBlobUrl("coursework/week-07/discussion-post-yasmin.md"),
+          body: [
+            "Agent Communication Languages (ACLs), such as KQML, were developed to allow autonomous agents to communicate through messages representing actions such as requests, questions and information sharing (Labrou and Finin, 2000). This is fundamentally different from method invocation in Python or Java. When a Python or Java programme calls a method, the developer normally knows exactly which operation is being requested, what inputs it requires and what type of result should be returned. With KQML, the focus is instead on communicating an intention, allowing the receiving agent to decide how to respond.",
+            "This is where I see both the main strength and weakness of ACLs. They can make a system much more flexible because agents do not need to know the internal implementation of other agents. This is particularly useful when agents are independent or distributed. However, the same autonomy can make the system harder to control. Communication requires additional processing, and the outcome may not be as predictable as a direct method call.",
+            "Python and Java therefore have an important advantage in terms of control and reliability. A method has a defined interface, making it easier to test, debug and predict its behaviour. The limitation is that the components become more dependent on each other. If the method changes, the code relying on it may also need to change. For a multi-agent system where components need to operate independently, this type of dependency can become a limitation.",
+            "There is also a deeper problem: communication does not necessarily equal understanding. Two agents can follow the same protocol and still interpret information differently. This is why semantic interoperability is important in systems where agents need to share knowledge, not just exchange messages (Malik and Malik, 2018).",
+            "I find this particularly relevant to current AI agents. MCP provides a standardised way for AI applications to connect with tools and external resources (Anthropic, 2024), while multi-agent LLM research shows that agents can communicate to challenge and improve each other's reasoning (Du et al., 2024). In this sense, the idea behind ACLs is still relevant, even if the technology has changed.",
+            "For me, the interesting trade-off is therefore not simply KQML versus Python or Java. It is control versus autonomy. Method invocation gives us predictable behaviour, while agent communication gives agents more freedom to cooperate and adapt. The question is whether that additional autonomy actually produces better results, or whether the loss of predictability becomes too high a price to pay.",
+          ],
+          references: [
+            "Anthropic (2024) Model Context Protocol specification. Available at: https://modelcontextprotocol.io/introduction (Accessed: 25 August 2026).",
+            "Du, Y., Li, S., Torralba, A., Tenenbaum, J.B. and Mordatch, I. (2024) 'Improving factuality and reasoning in language models through multiagent debate', Proceedings of the 41st International Conference on Machine Learning, 235. Available at: https://openreview.net/pdf?id=zj7YuTE4t8N (Accessed: 25 August 2026).",
+            "Labrou, Y. and Finin, T. (2000) Agent Communication Languages: Past, Present and Future. Tutorial presented at ICMAS 2000, Boston, July 2000. Available at: https://userpages.cs.umbc.edu/finin/talks/icmas00.pdf (Accessed: 28 August 2026).",
+            "Malik, M. and Malik, S.K. (2018) 'Semantic web as the next generation smart web', Journal of Emerging Technologies and Innovative Research, 5(6), pp. 580-594. Available at: https://www.jetir.org/papers/JETIR1806326.pdf (Accessed: 28 August 2026).",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 2)",
+          author: "Lana Menezes Fidelis (in reply to Yasmin Almeida Ferrera)",
+          description:
+            "Response linking Yasmin's control-versus-autonomy framing to the symbol grounding problem, FIPA-ACL's explicit ontology requirement, Jennings' (2000) flexibility/predictability trade-off, and the blurring of message/method-call boundaries in LLM-based agents.",
+          href: courseworkBlobUrl("coursework/week-07/peer-response-yasmin.md"),
+          body: [
+            "Hello Yasmin! Framing the trade-off as control versus autonomy is a clear way to cut through the KQML-versus-method-call comparison, and connecting it to MCP and multi-agent debate research (Du et al., 2024) makes a strong case that the underlying design question has outlived the original ACL technology.",
+            "I would push a little further on the \"communication does not equal understanding\" point. This is essentially the symbol grounding problem in a distributed setting: even with a shared protocol like KQML, performatives only specify the type of speech act, not the meaning of the terms inside the message content (Chaib-draa and Dignum, 2002). FIPA-ACL tried to address part of this by requiring agents to share content languages and ontologies explicitly rather than assuming them, though as your Malik and Malik (2018) reference suggests, semantic web style ontology alignment does not fully eliminate the risk of divergent interpretation. Wooldridge (2009) makes a related point that agent communication only works reliably when agents share a common mental model of the world, something that cannot be guaranteed simply by agreeing on a message syntax.",
+            "On the reliability point, I think there is a useful middle ground worth naming: many practical multi-agent systems, and MCP-based tool use is a good example, keep the transport and message structure standardised and machine-checkable (closer to a method call's defined interface) while leaving the content of the request open to interpretation by the receiving model. This partially recovers some of the testability you attribute to Python or Java, while still preserving the flexibility ACLs were designed for. It suggests the real design choice is not fully autonomous versus fully deterministic, but where along that spectrum the interface boundary is drawn.",
+            "This links to Jennings' (2000) argument that coordination in multi-agent systems requires an explicit trade-off between the flexibility of negotiation-based interaction and the predictability needed for dependable engineering, a tension that maps closely onto your control-versus-autonomy framing. More recent work on LLM-based agents (Guo et al., 2024) also suggests that as natural language itself becomes the communication medium, the boundary between \"message\" and \"method call\" is blurring further, since a natural language request can carry both structured intent and open-ended content within a single exchange.",
+          ],
+          references: [
+            "Guo, T., Chen, X., Wang, Y., Chang, R., Pei, S., Chawla, N.V., Wiest, O. and Zhang, X. (2024) 'Large language model based multi-agents: a survey of progress and challenges', in Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence (IJCAI-24), pp. 8048-8057.",
+            "Jennings, N.R. (2000) 'On agent-based software engineering', Artificial Intelligence, 117(2), pp. 277-296.",
+            "Wooldridge, M. (2009) An Introduction to MultiAgent Systems. 2nd edn. Chichester: Wiley.",
+          ],
+        },
+      ],
+    }],
+  },
+  8: {
+    week: 8,
+    title: "Week 8",
+    status: "complete",
+    summary: "Exercise: Constituency-Based Parse Trees.",
+    sections: [{
+      title: "Activity: Creating Constituency-Based Parse Trees",
+      description:
+        "Constituency parse trees for three sentences, including both readings of the classic PP-attachment ambiguity in 'The man saw the dog with the telescope.'",
+      items: [
+        {
+          title: "Parse Trees",
+          description:
+            "Trees for all three sentences in Penn Treebank bracket notation and as indented constituency diagrams, grammar: S -> NP VP; NP -> Det N | Det N N | N | NP PP; VP -> V NP | V NP NP | V NP PP; PP -> P NP.",
+          href: courseworkBlobUrl("coursework/week-08/parse-trees.md"),
+          code: [
+            "1. \"The government raised interest rates.\"\n\n(S\n  (NP (Det The) (N government))\n  (VP (V raised)\n      (NP (N interest) (N rates))))\n\nS\n├── NP\n│   ├── Det: The\n│   └── N: government\n└── VP\n    ├── V: raised\n    └── NP\n        ├── N: interest\n        └── N: rates",
+            "2. \"The internet gives everyone a voice.\"\n\n(S\n  (NP (Det The) (N internet))\n  (VP (V gives)\n      (NP (N everyone))\n      (NP (Det a) (N voice))))\n\nS\n├── NP\n│   ├── Det: The\n│   └── N: internet\n└── VP\n    ├── V: gives\n    ├── NP\n    │   └── N: everyone\n    └── NP\n        ├── Det: a\n        └── N: voice",
+            "3a. \"The man saw the dog with the telescope.\" - Reading A (instrumental: PP attaches to VP)\n\n(S\n  (NP (Det The) (N man))\n  (VP (V saw)\n      (NP (Det the) (N dog))\n      (PP (P with) (NP (Det the) (N telescope)))))\n\nS\n├── NP\n│   ├── Det: The\n│   └── N: man\n└── VP\n    ├── V: saw\n    ├── NP\n    │   ├── Det: the\n    │   └── N: dog\n    └── PP\n        ├── P: with\n        └── NP\n            ├── Det: the\n            └── N: telescope",
+            "3b. \"The man saw the dog with the telescope.\" - Reading B (descriptive: PP attaches to NP)\n\n(S\n  (NP (Det The) (N man))\n  (VP (V saw)\n      (NP (Det the) (N dog)\n          (PP (P with) (NP (Det the) (N telescope))))))\n\nS\n├── NP\n│   ├── Det: The\n│   └── N: man\n└── VP\n    ├── V: saw\n    └── NP\n        ├── Det: the\n        ├── N: dog\n        └── PP\n            ├── P: with\n            └── NP\n                ├── Det: the\n                └── N: telescope",
+          ],
+          body: [
+            "Sentence 3 is the classic case of prepositional-phrase attachment ambiguity: the grammar permits the PP 'with the telescope' to attach either under VP (the man used the telescope to see) or under the object NP (the dog has the telescope), and both derivations are equally well-formed, so the context-free grammar alone cannot disambiguate them.",
+            "Frazier's (1978) Minimal Attachment heuristic would favour Reading A, since it adds the PP at a shallower tree depth than Reading B. However, Hindle and Rooth (1993) showed disambiguation is better modelled lexically than structurally: attachment preference correlates with statistical association between the verb/noun and the preposition, which is the same principle later used by neural dependency parsers that score attachment from learned contextual representations rather than hand-written heuristics (Dozat and Manning, 2017).",
+            "This matters for intelligent agents directly: an agent instructed to 'identify the dog with the telescope' cannot act correctly without resolving this ambiguity, and a constituency parser only exposes it rather than resolving it. This is the same class of problem as the Week 7 discussion on semantic interoperability, communication does not equal understanding (Malik and Malik, 2018), and the symbol-grounding concern that shared syntax does not guarantee shared interpretation (Chaib-draa and Dignum, 2002).",
+          ],
+          references: [
+            "Chaib-draa, B. and Dignum, F. (2002) 'Trends in agent communication language', Computational Intelligence, 18(2), pp. 89-101.",
+            "Chomsky, N. (1957) Syntactic Structures. The Hague: Mouton.",
+            "Dozat, T. and Manning, C.D. (2017) 'Deep biaffine attention for neural dependency parsing', 5th International Conference on Learning Representations (ICLR 2017). Toulon, France, 24-26 April.",
+            "Frazier, L. (1978) On Comprehending Sentences: Syntactic Parsing Strategies. PhD thesis. University of Connecticut.",
+            "Hindle, D. and Rooth, M. (1993) 'Structural ambiguity and lexical relations', Computational Linguistics, 19(1), pp. 103-120.",
+            "Jurafsky, D. and Martin, J.H. (2009) Speech and Language Processing. 2nd edn. Upper Saddle River, NJ: Pearson Prentice Hall.",
+            "Malik, M. and Malik, S.K. (2018) 'Semantic web as the next generation smart web', Journal of Emerging Technologies and Innovative Research, 5(6), pp. 580-594.",
+          ],
+        },
+      ],
+    }],
+  },
+  9: {
+    week: 9,
+    title: "Week 9",
+    status: "complete",
+    summary: "Discussion forum: ethical issues in generative deep learning.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Initial post surveying the ethical issues raised by generative deep learning (bias, copyright, privacy/memorisation, environmental cost, malicious use).",
+      items: [
+        {
+          title: "Initial Post",
+          description:
+            "Generative models such as DALL-E and ChatGPT raise five distinct ethical concerns: algorithmic bias, copyright/authorship, data privacy and memorisation, environmental cost, and malicious use.",
+          href: courseworkBlobUrl("coursework/week-09/discussion-post.md"),
+          body: [
+            "The advent of generative deep learning models such as DALL-E and ChatGPT represents a paradigm shift in content creation, but it simultaneously raises profound ethical concerns that demand urgent consideration. The ability of these systems to generate novel text and imagery is built upon vast training corpora, and this foundational reliance on external data creates a complex web of ethical challenges.",
+            "A primary concern is algorithmic bias. Generative models do not create in a vacuum; they reflect and amplify the biases present in their training data. As Hagendorff (2024) notes, generative AI risks perpetuating biases like racism and sexism, leading to unequal access and marginalisation. Without active mitigation, these systems can reinforce societal inequalities, making robust bias auditing essential.",
+            "A second major issue is the challenge to copyright and authorship. The legal landscape surrounding generative AI is highly contested. Moore and Frankel (2024) explore the 'problem of the inputs', whether artists' works can be rightfully used to train these systems, and the 'problem of the outputs', whether AI-generated images can be credited to the user who prompted them. This ambiguity threatens the economic livelihoods of human creators and challenges our fundamental notions of creativity.",
+            "A third significant ethical dimension is data privacy and memorisation. Diffusion models can inadvertently reproduce training images, raising serious concerns about privacy and intellectual property. Research indicates that these models can memorise and later reproduce potentially sensitive or copyrighted training images at inference time (Zhang et al., 2024). This capability underscores the inadequacy of current technical safeguards.",
+            "Furthermore, the environmental cost of training and deploying these computationally intensive models is frequently overlooked. The energy and water consumption associated with large-scale deep learning contributes to carbon emissions, positioning generative AI not as a solution to climate change but as a contributor to it (Luccioni et al., 2023). This ecological impact must be factored into any comprehensive ethical assessment.",
+            "Finally, the potential for malicious use is substantial. Sivagnanam et al. (2024) highlight that generative AI can create harmful content, including disinformation, deepfakes, and violent material. The ease with which these systems can produce convincing but false information poses a direct threat to democratic discourse and individual safety.",
+            "In conclusion, the ethical issues surrounding generative deep learning are not speculative but immediate and multifaceted. They span bias, copyright, privacy, environmental sustainability, and misuse. Addressing them requires a holistic approach that combines technical innovation, ethical foresight, and robust governance, rather than relying on fragmented technical fixes alone.",
+          ],
+          references: [
+            "Hagendorff, T. (2024) 'Mapping the ethics of generative AI: A comprehensive scoping review', arXiv preprint arXiv:2402.08323. Available at: https://arxiv.org/abs/2402.08323 (Accessed: 24 September 2026).",
+            "Luccioni, A.S., Viguier, S. and Ligozat, A.-L. (2023) 'Estimating the carbon footprint of BLOOM, a 176B parameter language model', Journal of Machine Learning Research, 24(253), pp. 1-15.",
+            "Moore, J.G. and Frankel, S.J. (2024) 'Creativity, credit, and copyright in the age of artificial art', The Journal of Aesthetics and Art Criticism, 82(3), pp. 265-277. doi: 10.1093/jaac/kpae034.",
+            "Sivagnanam, B. et al. (2024) 'Ethical dimensions and societal effects of generative AI', in Generative AI and Society. Hoboken, NJ: Wiley, pp. 1-20. doi: 10.1002/9781394302932.ch7.",
+            "Zhang, D. et al. (2024) 'Privacy and copyright protection in generative AI: A lifecycle perspective', in Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency. New York: ACM, pp. 1-12. doi: 10.1145/3644815.3644952.",
+          ],
+        },
+      ],
+    }],
+  },
+  10: {
+    week: 10,
+    title: "Week 10",
+    status: "complete",
+    summary: "Discussion forum: responsible deployment and privacy; plus Deep Learning in Action activity.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Two peer threads on responsible AI deployment: privacy-by-design safeguards for an academic-literature agent, and the limits of provenance/watermarking as an accountability mechanism.",
+      items: [
+        {
+          title: "Initial Post (Thread 1)",
+          author: "Aldana Mohammed A A Al-Dosari",
+          description:
+            "The shift from discriminative to generative deep learning makes ethical problems structural; proposes three safeguards for an academic-literature retrieval agent, built around privacy-by-design and human review.",
+          href: courseworkBlobUrl("coursework/week-10/discussion-post.md"),
+          body: [
+            "The evolution of deep learning helps explain why its ethical implications now demand attention. Ten years ago, the biggest successes were discriminative ones; Microsoft's networks were able to outperform humans in image recognition (Thomsen, 2015). Today, transformer-based architectures underpin systems like DALL-E and ChatGPT that generate new content rather than classify content (Or, 2025), and I would argue that this move from recognition to generation makes the ethical problems structural rather than secondary. Generative systems require provenance and authorship questions, can create and amplify bias in their training data, and lower the cost of creating convincing misinformation (Radanliev et al., 2024). Izabayo (2026) tackles an even wider societal issue: how AI benefits are distributed across countries, which he argues is the least well-known aspect of national AI strategy globally. Ethical deployment is therefore not just a design problem but a governance one as well.",
+            "For the second task, I researched responsible deployment with a focus on privacy. Radanliev et al. (2024) argue that AI systems must handle large volumes of personal data, so privacy protection should be built into the system in advance through differential privacy and federated learning, and that developers should be responsible for monitoring bias and errors throughout the system's lifecycle. This is critical because deep learning models are opaque, so harm can go unnoticed without meaningful protection.",
+            "I would address this risk in my own agent system, which retrieves and curates academic literature, in three ways: minimising the personal data agents collect and store; verifying every retrieved source's metadata before it enters any output, so unverified content is discarded rather than repaired; and keeping a human reviewer over the final synthesis, as a reflection of the transparency and lifecycle-accountability principles Radanliev et al. (2024) identify as central to responsible deployment.",
+          ],
+          references: [
+            "Izabayo, J.C. (2026) 'The DARE framework: a global model for responsible artificial intelligence (AI) deployment', Journal of Integrated Global STEM, 2(2), pp. 92-97.",
+            "Or, B. (2025) Modern deep learning foundations: explore deep learning with CNNs, transformers, and real-world deployment tools. Packt Publishing.",
+            "Radanliev, P., Santos, O., Brandon-Jones, A. and Joinson, A. (2024) 'Ethics and responsible AI deployment', Frontiers in Artificial Intelligence, 7, 1377011.",
+            "Thomsen, M. (2015) 'Microsoft's deep learning project outperforms humans in image recognition', Forbes.",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 1)",
+          author: "Lana Menezes Fidelis (in reply to Aldana Mohammed A A Al-Dosari)",
+          description:
+            "Response proposing claim-level grounding via retrieval-augmented generation, guarding against automation complacency in the human reviewer step, versioned accountability logging, and the limits of watermarking as a safeguard.",
+          href: courseworkBlobUrl("coursework/week-10/peer-response.md"),
+          body: [
+            "Hello Aldana! Your agent design turns abstract generative-AI ethics into concrete engineering decisions, and I would like to suggest some preventive measures that build on your three safeguards.",
+            "First, checking metadata confirms that a source exists, but not that it says what the output claims. Walters and Wilder (2023) found that 55% of GPT-3.5 citations and 18% of GPT-4 citations were fabricated, and many of the real ones still contained substantive errors. This matters for Frederick's question about misrepresented findings. One answer is claim-level grounding: use retrieval-augmented generation (Lewis et al., 2020), then run an entailment check that links each sentence to a quoted passage. Any claim the retrieved text does not support gets flagged, not silently passed.",
+            "Second, a human reviewer only helps if they stay alert. Parasuraman and Manzey (2010) show that people come to over-trust automation that is usually reliable, so a reviewer who approves many polished syntheses may stop checking closely. Showing the low-confidence claims first, and occasionally inserting known errors as a test, could keep the review meaningful.",
+            "Third, I would argue that the responsibility gaps Santoni de Sio and Mecacci (2021) describe get smaller when accountability is built into the system. Versioned logs of prompts, retrieved sources, and reviewer decisions support the end-to-end auditing proposed by Raji et al. (2020), so it becomes possible to trace where a failure started.",
+            "Finally, watermarking is unlikely to be a universal solution, because Sadasivan et al. (2023) show that paraphrasing can remove it. The EU AI Act already requires providers to mark generative outputs (European Union, 2024, Art. 50). This suggests responsibility starts with the tool, and platforms act as a second layer.",
+          ],
+          references: [
+            "Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Kuttler, H., Lewis, M., Yih, W., Rocktaschel, T., Riedel, S. and Kiela, D. (2020) 'Retrieval-augmented generation for knowledge-intensive NLP tasks', Advances in Neural Information Processing Systems, 33, pp. 9459-9474.",
+            "Parasuraman, R. and Manzey, D.H. (2010) 'Complacency and bias in human use of automation: an attentional integration', Human Factors, 52(3), pp. 381-410. Available at: https://doi.org/10.1177/0018720810376055",
+            "Raji, I.D., Smart, A., White, R.N., Mitchell, M., Gebru, T., Hutchinson, B., Smith-Loud, J., Theron, D. and Barnes, P. (2020) 'Closing the AI accountability gap: defining an end-to-end framework for internal algorithmic auditing', Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (FAT* '20). Barcelona, 27-30 January. New York: ACM, pp. 33-44. Available at: https://doi.org/10.1145/3351095.3372873",
+            "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). Official Journal of the European Union L, 12 July 2024. Available at: https://eur-lex.europa.eu/eli/reg/2024/1689/oj (Accessed: 30 September 2026).",
+            "Sadasivan, V.S., Kumar, A., Balasubramanian, S., Wang, W. and Feizi, S. (2023) 'Can AI-generated text be reliably detected?', arXiv preprint, arXiv:2303.11156. Available at: https://arxiv.org/abs/2303.11156 (Accessed: 30 September 2026).",
+            "Santoni de Sio, F. and Mecacci, G. (2021) 'Four responsibility gaps with artificial intelligence: why they matter and how to address them', Philosophy & Technology, 34(4), pp. 1057-1084. Available at: https://doi.org/10.1007/s13347-021-00450-x",
+            "Walters, W.H. and Wilder, E.I. (2023) 'Fabrication and errors in the bibliographic citations generated by ChatGPT', Scientific Reports, 13, 14045. Available at: https://doi.org/10.1038/s41598-023-41032-5",
+          ],
+        },
+        {
+          title: "Initial Post (Thread 2)",
+          author: "Anne Dayer",
+          description:
+            "Argues that provenance marking (C2PA, SynthID-Text watermarking) answers only a narrow question, origin, not veracity or accountability, and is fragile and forgeable besides.",
+          href: courseworkBlobUrl("coursework/week-10/discussion-post-anne.md"),
+          body: [
+            "Yes. Provenance marking answers a real question, but a narrow one, and is treated as though it settled the rest.",
+            "Since 2 August 2026, Article 50 of the AI Act has required generative output to be marked machine-readably as synthetic (European Union, 2024), and Anthropic says future Claude models will carry a watermark at launch (Anthropic, 2026).",
+            "Golaszewski et al. (2026) put the distinction sharply: despite the word in its name, C2PA is a mechanism for provenance, not authenticity. Origin is not veracity. The same holds for text. Claude's mark is a version of SynthID-Text (Dathathri et al., 2024), which Anthropic says works poorly on factual passages and is largely absent from code, because exact wording leaves few choices free (Anthropic, 2026).",
+            "Such marks are also removable. An open implementation of SynthID-Text lost its watermark in 98.3% of paraphrase runs (Tamim and Khan, 2026), though fragility is the smaller worry.",
+            "Even a flawless mark would leave the ethics untouched, because correctness is not by itself a moral property. What carries weight is whether anyone was warranted in putting something forward, and who answers if it turns out wrong. Provenance settles neither.",
+            "Consider a synthetic intimate image of a real person. A credential would report only that a model made it, and not who created it, who published it, or that its subject never consented.",
+            "So should provenance name the person generating content, and not only the model? It would give the affected person someone to hold responsible. Yet C2PA's own identity specification concedes that an attacker can lift a valid identity assertion and attach it to another asset, falsely attributing illegal content to an innocent person (Kaye and Dixon, 2025). I am not sure which risk I would rather run. Where would you?",
+          ],
+          references: [
+            "Anthropic (2026) How Claude's text watermarking works, 14 August. Available at: https://www.anthropic.com/news/claude-text-watermark (Accessed: 19 August 2026).",
+            "Dathathri, S. et al. (2024) 'Scalable watermarking for identifying large language model outputs', Nature, 634(8035), pp. 818-823. Available at: https://doi.org/10.1038/s41586-024-08025-4",
+            "European Union (2024) Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). OJ L, 2024/1689, 12 July. Available at: https://eur-lex.europa.eu/eli/reg/2024/1689/oj (Accessed: 19 August 2026).",
+            "Golaszewski, E. et al. (2026) Verifying provenance of digital media: security analysis of C2PA and its implementation. Maryland Shared Open Access Repository. Available at: https://doi.org/10.13016/m2u1qh-txb8 (Accessed: 19 August 2026).",
+            "Kaye, K. and Dixon, P. (2025) Privacy, identity and trust in C2PA: a technical review and analysis of the C2PA digital media provenance framework. San Diego, CA: World Privacy Forum. Available at: https://worldprivacyforum.org/posts/privacy-identity-and-trust-in-c2pa/ (Accessed: 19 August 2026).",
+            "Tamim, S.R. and Khan, A.L. (2026) 'AI watermark evidence fails forensic readiness: an empirical evaluation', arXiv [Preprint]. Available at: https://arxiv.org/abs/2607.16010 (Accessed: 19 August 2026).",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 2)",
+          author: "Lana Menezes Fidelis (in reply to Anne Dayer)",
+          description:
+            "Response arguing provenance is being asked to do accountability work it was not designed for (the 'answerability gap'), and that responsibility-by-design and platform-level preventive measures offer more practical protection than watermarking alone.",
+          href: courseworkBlobUrl("coursework/week-10/peer-response-anne.md"),
+          body: [
+            "Hello Anne! I agree that provenance does not equal veracity, and your point about the limitations of watermarking is compelling. But I want to shift the focus from what provenance fails to do, toward what it is actually designed to achieve, and whether other approaches might better address the harms you raise.",
+            "First, a technical qualification. The fragility of watermarking that you note is not incidental but structural. A systematic review of AI-generated code provenance techniques finds that passive attribution degrades significantly under common transformations such as refactoring, while token-level watermarking schemes remain fragile under semantic-preserving transformations (Kaur et al., 2026). If provenance is easily stripped or forged, as when C2PA manifests are signed with self-signed certificates claiming any creator identity or platform recompression removes metadata entirely (AI Threat Atlas, 2026), then relying on it for accountability is precarious at best.",
+            "More fundamentally, I would suggest the problem is not that provenance fails to establish correctness, but that it is being asked to carry accountability work it was never designed for. The \"answerability gap\" describes precisely this: a party may be traceable yet never exercised judgment over the decision's evaluative frame, meaning responsibility becomes scapegoating rather than genuine accountability (Walton, 2026). This is why Lara's provider-retention proposal, while reducing false attribution risk, simply relocates trust to an institution without resolving the underlying gap.",
+            "A complementary approach lies in responsibility-by-design, which embeds ethical and legal considerations from conception through the entire AI lifecycle (Telefónica Tech, 2023). Platform-level preventive measures, such as YouTube's likeness detection, which uses facial scanning to alert individuals to synthetic misuse of their image and enables removal requests (VARIndia, 2026), operationalise this principle by targeting harm directly rather than relying on post-hoc provenance verification. Combined with regulatory frameworks like the EU AI Act's transparency obligations (European Union, 2024), such measures offer more practical protection than watermarking alone.",
+          ],
+          references: [
+            "AI Threat Atlas (2026) C2PA manifest forgery and provenance bypass. Available at: https://github.com/seahop/ai-threat-atlas/blob/main/docs/techniques/c2pa-manifest-forgery.md (Accessed: 24 September 2026).",
+            "European Union (2024) Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). OJ L, 2024/1689, 12 July. Available at: https://eur-lex.europa.eu/eli/reg/2024/1689/oj (Accessed: 24 September 2026).",
+            "Kaur, M. et al. (2026) 'Can we trust the source? A systematic review of watermarking and attribution for AI-generated code', Information and Software Technology, 196, article 107684. Available at: https://doi.org/10.1016/j.infsof.2026.107684.",
+            "Telefónica Tech (2023) Responsibility from design applied to AI, 10 July. Available at: https://telefonicatech.com/en/blog/responsibility-from-design-applied-to-ai (Accessed: 24 September 2026).",
+            "VARIndia (2026) 'YouTube expands AI deepfake detection tool to all adult users', VARIndia, 18 May. Available at: https://www.varindia.com/news/youtube-expands-ai-deepfake-detection-tool-to-all-adult-users (Accessed: 24 September 2026).",
+            "Walton, D. (2026) The decision no one authored: the answerability gap in generative AI. Zenodo. Available at: https://doi.org/10.5281/zenodo.20622946 (Accessed: 24 September 2026).",
+          ],
+        },
+      ],
+    }, {
+      title: "Activity: Deep Learning in Action",
+      description:
+        "Research post on an application of deep learning expected to impact society: Deep Knowledge Tracing (DKT) for personalised education, covering how it works and its social good, reliability, fairness, and privacy/regulatory implications.",
+      items: [
+        {
+          title: "Deep Learning in Action",
+          description:
+            "Deep Knowledge Tracing models what a student knows via an LSTM over interaction sequences and recommends a personalised path to close learning gaps; operates as a learning agent (perceives responses, maintains a learner model, acts to maximise mastery).",
+          href: courseworkBlobUrl("coursework/week-10/deep-learning-in-action.md"),
+          body: [
+            "Deep Knowledge Tracing (DKT) uses deep learning to model what a student knows and identify the concepts they have not yet grasped. It then recommends a personalised path to close those gaps. DKT underpins many adaptive learning platforms because it offers a scalable approximation of one-to-one tutoring, which Bloom (1984) found raised attainment by around two standard deviations.",
+            "How it works: Classical Bayesian Knowledge Tracing treats each skill as either mastered or not (Corbett and Anderson, 1994). Piech et al. (2015) replaced this with a recurrent neural network. Each interaction, meaning the exercise attempted and whether it was answered correctly, is fed into a Long Short-Term Memory network. The network's hidden state represents the student's evolving knowledge. The model predicts the probability of answering each skill correctly next, and persistently low probabilities reveal gaps. A recommendation component, increasingly based on reinforcement learning, then sequences exercises according to prerequisite structure (Liu et al., 2019). The system therefore operates as a learning agent: it perceives responses, maintains an internal model of the learner, and acts autonomously to maximise mastery (Russell and Norvig, 2021; Wooldridge, 2009).",
+            "Social good: DKT can detect misunderstanding before it compounds, and can give teachers dashboards that show where to focus classroom time.",
+            "Reliability: the gains may be overstated. Khajah, Lindsey, and Mozer (2016) found that extended Bayesian models performed comparably. Yeung and Yeung (2018) showed that DKT can lower a student's estimated mastery after a correct answer. Because the knowledge state is an opaque vector, teachers cannot easily verify why a pupil was flagged.",
+            "Fairness: educational algorithms often perform worse for underrepresented groups (Baker and Hawn, 2022). A biased diagnosis could channel pupils into remedial pathways, and the lowered expectations could become a self-fulfilling prophecy.",
+            "Privacy and regulation: continuous tracking of children's errors creates detailed cognitive profiles, raising concerns over consent, retention, and commercial reuse (Slade and Prinsloo, 2013). The EU AI Act classifies systems that evaluate learning outcomes and steer learning as high-risk, so they require human oversight (European Union, 2024).",
+            "Conclusion: DKT could make personalised tutoring affordable at scale. However, its diagnoses are probabilistic, opaque and potentially biased, so it should inform teachers' judgement rather than replace it.",
+          ],
+          references: [
+            "Baker, R.S. and Hawn, A. (2022) 'Algorithmic bias in education', International Journal of Artificial Intelligence in Education, 32(4), pp. 1052-1092. Available at: https://doi.org/10.1007/s40593-021-00285-9",
+            "Bloom, B.S. (1984) 'The 2 sigma problem: the search for methods of group instruction as effective as one-to-one tutoring', Educational Researcher, 13(6), pp. 4-16. Available at: https://doi.org/10.3102/0013189X013006004",
+            "Corbett, A.T. and Anderson, J.R. (1994) 'Knowledge tracing: modeling the acquisition of procedural knowledge', User Modeling and User-Adapted Interaction, 4(4), pp. 253-278. Available at: https://doi.org/10.1007/BF01099821",
+            "European Union (2024) Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). OJ L, 2024/1689, 12 July. Available at: https://eur-lex.europa.eu/eli/reg/2024/1689/oj (Accessed: 1 October 2026).",
+            "Khajah, M., Lindsey, R.V. and Mozer, M.C. (2016) 'How deep is knowledge tracing?', Proceedings of the 9th International Conference on Educational Data Mining. Raleigh, NC: International Educational Data Mining Society, pp. 94-101.",
+            "Liu, Q. et al. (2019) 'Exploiting cognitive structure for adaptive learning', Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. New York: ACM, pp. 627-635. Available at: https://doi.org/10.1145/3292500.3330922",
+            "Piech, C. et al. (2015) 'Deep knowledge tracing', Advances in Neural Information Processing Systems 28. Montreal: Curran Associates, pp. 505-513.",
+            "Russell, S. and Norvig, P. (2021) Artificial Intelligence: A Modern Approach. 4th edn. Harlow: Pearson.",
+            "Slade, S. and Prinsloo, P. (2013) 'Learning analytics: ethical issues and dilemmas', American Behavioral Scientist, 57(10), pp. 1510-1529. Available at: https://doi.org/10.1177/0002764213479366",
+            "Wooldridge, M. (2009) An Introduction to MultiAgent Systems. 2nd edn. Chichester: Wiley.",
+            "Yeung, C.-K. and Yeung, D.-Y. (2018) 'Addressing two problems in deep knowledge tracing via prediction-consistent regularization', Proceedings of the Fifth Annual ACM Conference on Learning at Scale. New York: ACM, Article 5. Available at: https://doi.org/10.1145/3231644.3231647",
+          ],
+        },
+      ],
+    }],
+  },
+  11: {
+    week: 11,
+    title: "Week 11",
+    status: "complete",
+    summary: "Discussion forum and implemented solution: Research Brief Agent.",
+    sections: [{
+      title: "Discussion Forum",
+      description:
+        "Summary post reflecting on peer discussion (Anne, Aldana) about generative deep learning ethics, arguing bias and memorisation are structural consequences of how these systems are optimised, not patchable defects.",
+      items: [
+        {
+          title: "Summary Post",
+          author: "Lana Menezes Fidelis (own thread)",
+          description:
+            "Argues upstream data curation and lifecycle-based governance matter more than output-level fixes, since neural networks induce behaviour from data rather than following specified rules, and that some risks (data provenance, environmental cost accounting) may be structurally difficult to fully resolve.",
+          href: courseworkBlobUrl("coursework/week-11/summary-post.md"),
+          body: [
+            "Peer discussion has reinforced my view that the ethical problems of generative deep learning are not incidental flaws but consequences of how these systems are built, and that this limits what technical fixes can achieve.",
+            "Neural networks induce behaviour from data rather than following specified rules, and deep architectures can fit even randomly labelled examples (Zhang et al., 2021). Bias and memorisation are therefore expected outcomes of optimisation, not defects that can be patched afterwards.",
+            "Anne's reference to Carlini et al. (2023) illustrates this: training images were extracted from state-of-the-art diffusion models, most often those heavily duplicated in the training set, and neither deduplication nor differentially private training offered an acceptable privacy-utility trade-off. This favours upstream curation over output filtering alone. Yet upstream control assumes consent and provenance can be verified, which Longpre et al. (2024) show current data infrastructure cannot guarantee; datasheets (Gebru et al., 2021) improve transparency but do not, by themselves, confer legitimacy.",
+            "Aldana's question of environmental versus economic trade-offs exposes a further gap. The energy cost of large models is substantial, yet estimates vary with hardware, grid intensity and accounting boundaries (Strubell, Ganesh and McCallum, 2019; Luccioni, Viguier and Ligozat, 2023), and the EU AI Act requires documentation rather than limits (European Union, 2024). Disclosure without thresholds risks becoming compliance theatre.",
+            "These weaknesses grow more serious as deep learning shifts from generating content to driving decisions. In smart manufacturing and algorithmic finance, learned models increasingly act through cyber-physical systems and autonomous agents (Lu, 2017), where a biased or erroneous output becomes an action rather than a suggestion.",
+            "I therefore maintain that governance must assign each harm a lifecycle stage, an accountable actor and a measurable control, treated as non-functional requirements from data collection onward (Radanliev et al., 2024), while recognising that some risks may prove irreducible.",
+          ],
+          references: [
+            "Carlini, N. et al. (2023) 'Extracting training data from diffusion models', Proceedings of the 32nd USENIX Security Symposium. Berkeley, CA: USENIX Association, pp. 5253-5270.",
+            "European Union (2024) Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). OJ L, 2024/1689, 12 July. Available at: https://eur-lex.europa.eu/eli/reg/2024/1689/oj (Accessed: 1 October 2026).",
+            "Gebru, T. et al. (2021) 'Datasheets for datasets', Communications of the ACM, 64(12), pp. 86-92. Available at: https://doi.org/10.1145/3458723",
+            "Longpre, S. et al. (2024) 'Position: data authenticity, consent, and provenance for AI are all broken: what will it take to fix them?', Proceedings of the 41st International Conference on Machine Learning, 235, pp. 32711-32725.",
+            "Lu, Y. (2017) 'Industry 4.0: a survey on technologies, applications and open research issues', Journal of Industrial Information Integration, 6, pp. 1-10. Available at: https://doi.org/10.1016/j.jii.2017.04.005",
+            "Luccioni, A.S., Viguier, S. and Ligozat, A.-L. (2023) 'Estimating the carbon footprint of BLOOM, a 176B parameter language model', Journal of Machine Learning Research, 24(253), pp. 1-15.",
+            "Radanliev, P., Santos, O., Brandon-Jones, A. and Joinson, A. (2024) 'Ethics and responsible AI deployment', Frontiers in Artificial Intelligence, 7, 1377011. Available at: https://doi.org/10.3389/frai.2024.1377011",
+            "Strubell, E., Ganesh, A. and McCallum, A. (2019) 'Energy and policy considerations for deep learning in NLP', Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics. Florence: ACL, pp. 3645-3650. Available at: https://doi.org/10.18653/v1/P19-1355",
+            "Zhang, C., Bengio, S., Hardt, M., Recht, B. and Vinyals, O. (2021) 'Understanding deep learning (still) requires rethinking generalization', Communications of the ACM, 64(3), pp. 107-115. Available at: https://doi.org/10.1145/3446776",
+          ],
+        },
+      ],
+    }, {
+      title: "Implemented Solution",
+      description:
+        "Research Brief Agent: an individual implementation of the group's Week 7 design, a multi-agent pipeline that plans, retrieves, evaluates and synthesises academic literature into a grounded research brief.",
+      items: [
+        {
+          title: "Research Brief Agent",
+          href: "https://github.com/Lana-Lannister/research-brief-agent",
+          highlightHref: true,
+          description:
+            "A deterministic orchestrator coordinates a Planning Agent, a Retrieval Agent (Semantic Scholar, falling back to OpenAlex, with Crossref DOI validation) and an Evaluation & Synthesis Agent, bounded by two human checkpoints and strict output grounding, to turn a research question into a Markdown/JSON research brief.",
+          body: [
+            "Given a high-level research question, the system plans sub-questions, retrieves scholarly records, evaluates their relevance, and synthesises the evidence into a research brief listing selected papers (DOI-checked against Crossref), abstract-grounded summaries, themes, gaps and the search's own limitations. It is explicitly scoped as a starting point for a literature search, not a finished review.",
+            "Architecture: a deterministic orchestrator, not an LLM, handles retry/scope limits, deduplication, DOI validation, storage and logging. The Planning Agent (LLM) decomposes the question and can revise sub-questions or reformulate a query. The Retrieval Agent queries Semantic Scholar, falls back to OpenAlex, and requests one reformulation through the orchestrator if the record threshold isn't met. The Evaluation & Synthesis Agent (LLM) scores relevance, identifies themes and gaps, and summarises only approved abstracts. This mirrors the retrieval-agent-to-planning-agent reformulation exchange discussed in the Week 7 forum thread with Dragos Hont, and keeps the deterministic, rule-based operations (deduplication, DOI validation) outside the LLM boundary, consistent with the practical boundary argued for there.",
+            "Autonomy bounds: two human checkpoints (approving/revising sub-questions, then approving/refining/rejecting the retrieval scope, with one rejection allowed), one automatic query reformulation per sub-question, and one scope revision per run. This is a concrete instance of bounded autonomy: the system can act independently within a fixed budget of retries and revisions, but cannot expand its own scope indefinitely, which keeps a human in the loop at the two points where misdirected autonomy would be costliest to unwind.",
+            "Grounding and safeguards: the LLM is restricted to semantic tasks only, it is never asked to invent references, and it only judges records the indexes actually returned. Replies are schema-validated with bounded retries, and a reply that stays invalid causes the run to fail closed rather than produce an unreliable brief. Any output citing a record ID the model was not given is discarded, and summaries draw only on approved abstracts. This directly addresses the citation-fabrication risk raised in the Week 10 discussion (Walters and Wilder, 2023, found 55% of GPT-3.5 and 18% of GPT-4 citations fabricated): grounding is enforced in code, not left to the model's self-report, and evaluative decisions remain with the human reviewer to counter automation complacency (Parasuraman and Manzey, 2010).",
+            "Testing: 55 offline unit, functional and robustness tests with 95% line coverage, run against replayed API responses so the test suite does not depend on live network access or API keys. An offline demo mode using a synthetic corpus and a keyword baseline lets the whole pipeline be exercised without any credentials.",
+            "Tech stack: Python 3.11+, Pydantic for schema validation, the Google Gemini API (gemini-2.5-flash by default) for the Planning and Evaluation & Synthesis agents, and Semantic Scholar/OpenAlex/Crossref as scholarly data sources.",
+          ],
+          references: [
+            "Parasuraman, R. and Manzey, D.H. (2010) 'Complacency and bias in human use of automation: an attentional integration', Human Factors, 52(3), pp. 381-410. Available at: https://doi.org/10.1177/0018720810376055",
+            "Walters, W.H. and Wilder, E.I. (2023) 'Fabrication and errors in the bibliographic citations generated by ChatGPT', Scientific Reports, 13, 14045. Available at: https://doi.org/10.1038/s41598-023-41032-5",
           ],
         },
       ],
