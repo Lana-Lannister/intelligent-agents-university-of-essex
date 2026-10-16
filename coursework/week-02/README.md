@@ -1,7 +1,10 @@
 # Week 02 coursework
 
-Place this week's raw artifacts here: Jupyter notebooks (`.ipynb`), datasets, scripts, and any source reports.
+**Status:** ✅ Complete — Discussion Forum.
 
-These files are the source of truth and are linked from `content/weeks/week-02.mdx` via their GitHub blob URL (e.g. `https://github.com/<user>/<repo>/blob/main/coursework/week-02/notebook.ipynb`), since GitHub renders notebooks natively.
+## Files
 
-If a file needs to be directly downloadable or embedded from the live site (e.g. a PDF report or a results screenshot), put a copy in `public/weeks/week-02/` instead, see that folder's note.
+- [`discussion-post.md`](discussion-post.md) — Initial post by Lara Koller (2 August 2026): agent-based systems and LLM-powered research agent design (STORM/PaSa).
+- [`peer-response.md`](peer-response.md) — Peer response by Lana Menezes Fidelis (10 August 2026), replying to Lara Koller.
+
+Rendered on the e-portfolio site at `/weeks/2` (content mirrored into the `weekDetails[2]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).

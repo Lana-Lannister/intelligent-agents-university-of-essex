@@ -13,12 +13,16 @@ Live site: https://intelligent-agents-university-of-essex.vercel.app/
 ## Repository structure
 
 ```
-app/                  Next.js routes (home page)
-components/           Shared React components (Header, Hero, Footer)
-lib/                  Site config
+app/                  Next.js routes (home page, /weeks/[week] detail pages)
+components/           Shared React components (Header, Hero, Footer, WeekCard)
+lib/                  Site config and weekly content data (lib/weeks.ts)
 public/               Static assets
-coursework/           Raw working files (notebooks, datasets, scripts)
+coursework/           Per-week source files (discussion posts, notebooks, datasets, scripts)
 ```
+
+## Finding a week's work
+
+Each week has its own folder under [`coursework/week-NN/`](coursework/), with a `README.md` listing its files and status. [`coursework/README.md`](coursework/README.md) is the index of all 12 weeks — start there to see what's been submitted and what's outstanding. The same content also renders on the live site at `/weeks/NN`.
 
 ## Local development
 

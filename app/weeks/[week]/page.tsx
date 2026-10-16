@@ -49,6 +49,11 @@ export default async function WeekPage({
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <span className="font-medium text-zinc-900">
                     {item.title}
+                    {item.author ? (
+                      <span className="ml-2 text-xs font-normal text-zinc-500">
+                        {item.author}
+                      </span>
+                    ) : null}
                   </span>
                   {item.href ? (
                     <a

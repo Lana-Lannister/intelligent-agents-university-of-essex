@@ -1,7 +1,9 @@
 # Week 03 coursework
 
-Place this week's raw artifacts here: Jupyter notebooks (`.ipynb`), datasets, scripts, and any source reports.
+**Status:** ⬜ Not started.
 
-These files are the source of truth and are linked from `content/weeks/week-03.mdx` via their GitHub blob URL (e.g. `https://github.com/<user>/<repo>/blob/main/coursework/week-03/notebook.ipynb`), since GitHub renders notebooks natively.
+## Files
 
-If a file needs to be directly downloadable or embedded from the live site (e.g. a PDF report or a results screenshot), put a copy in `public/weeks/week-03/` instead, see that folder's note.
+_None yet._ Place this week's raw artifacts here, one file per artifact (e.g. `discussion-post.md`, `peer-response.md`, `notebook.ipynb`, datasets, reports).
+
+Once added, mirror the content into a new `weekDetails[3]` entry in [`lib/weeks.ts`](../../lib/weeks.ts) so it renders on the e-portfolio site at `/weeks/3`, and list the files above and in [`coursework/README.md`](../README.md).

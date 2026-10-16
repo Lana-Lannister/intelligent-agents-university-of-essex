@@ -1,7 +1,9 @@
 # Week 01 coursework
 
-Place this week's raw artifacts here: Jupyter notebooks (`.ipynb`), datasets, scripts, and any source reports.
+**Status:** ✅ Complete — Discussion Forum.
 
-These files are the source of truth and are linked from `content/weeks/week-01.mdx` via their GitHub blob URL (e.g. `https://github.com/<user>/<repo>/blob/main/coursework/week-01/notebook.ipynb`), since GitHub renders notebooks natively.
+## Files
 
-If a file needs to be directly downloadable or embedded from the live site (e.g. a PDF report or a results screenshot), put a copy in `public/weeks/week-01/` instead, see that folder's note.
+- [`discussion-post.md`](discussion-post.md) — Initial post by Lana Menezes Fidelis (31 July 2026): why agent-based systems emerged and how they benefit organisations.
+
+Rendered on the e-portfolio site at `/weeks/1` (content mirrored into the `weekDetails[1]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).
