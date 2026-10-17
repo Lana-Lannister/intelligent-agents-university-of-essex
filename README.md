@@ -2,7 +2,7 @@
 
 E-portfolio for the **Intelligent Agents** module of the **MSc Artificial Intelligence** programme at the **University of Essex**.
 
-Live site: https://intelligent-agents-university-of-essex.vercel.app/
+Live site: https://intelligent-agents-university-of-esssex.vercel.app/
 
 ## Tech stack
 
