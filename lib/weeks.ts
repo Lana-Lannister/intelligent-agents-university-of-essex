@@ -82,14 +82,14 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
     week: 2,
     title: "Week 2",
     status: "complete",
-    summary: "Discussion forum: initial post and peer response.",
+    summary: "Collaborative Discussion 1: two peer threads on agent-based systems and research agents.",
     sections: [{
-      title: "Discussion Forum",
+      title: "Discussion Forum: Collaborative Discussion 1",
       description:
-        "Peer's initial post on agent-based systems and LLM-powered research agents, plus my response.",
+        "Two peer threads on agent-based systems and LLM-powered research agents, plus my responses.",
       items: [
         {
-          title: "Initial Post",
+          title: "Initial Post (Thread 1)",
           author: "Lara Koller",
           description:
             "Agent-based systems as a response to organisational complexity and LLM advances, with an additional task on STORM/PaSa-style research agent design.",
@@ -111,7 +111,7 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
         {
-          title: "Peer Response",
+          title: "Peer Response (Thread 1)",
           author: "Lana Menezes Fidelis (in reply to Lara Koller)",
           description:
             "Response discussing adaptive role allocation and replanning as safeguards against the rigidity Lara identified in organisation-based MAS and single-coordinator research-agent designs.",
@@ -127,6 +127,49 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
             "Dorri, A., Kanhere, S.S. and Jurdak, R. (2018) 'Multi-agent systems: a survey', IEEE Access, 6, pp. 28573–28593. Available at: https://doi.org/10.1109/ACCESS.2018.2831228",
             "Wang, L. et al. (2024) 'A survey on large language model based autonomous agents', Frontiers of Computer Science, 18, article 186345. Available at: https://doi.org/10.1007/s11704-024-40231-1",
             "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115–152. Available at: https://doi.org/10.1017/S0269888900008122",
+          ],
+        },
+        {
+          title: "Initial Post (Thread 2)",
+          author: "Sergei Misjura",
+          description:
+            "Reflects on the group's deterministic orchestrator with three agents (Planning, Retrieval, Evaluation and Synthesis) after it was built and tested, including a live Semantic Scholar outage the dual-source retrieval design absorbed without hiding the coverage gap.",
+          href: courseworkBlobUrl("coursework/week-02/discussion-post-sergei.md"),
+          body: [
+            "I am posting this later than planned. The advantage is that the research agent our team designed has now been built and tested, so I can write about what actually happened and not only about the design.",
+            "Agent-based systems became popular because computing itself changed. Work is now spread across networks, services and organisations, and one program cannot see or control all of it. Wooldridge and Jennings (1995) describe an agent as autonomous, reactive, pro-active and social, and this definition is still useful today. Jennings (2000) argues that breaking a complex system into interacting agents is a natural way to build it, because each agent can take responsibility for one part of the problem. More recently, large language models have given agents a general way to plan, read and write. Wang et al. (2024) describe LLM-based agents in terms of profile, memory, planning and action modules.",
+            "For organisations, I think the main benefit is not autonomy itself but delegation with clear limits. Coming from logistics, I see this as similar to delegating to a warehouse team. Routine decisions are handed over, but there are checkpoints where a person signs off. Parasuraman, Sheridan and Wickens (2000) make the same point in a more formal way. Automation is not all or nothing, and its level can be set separately for gathering information, analysing it, deciding and acting.",
+            "Additional Task: STORM breaks a topic into perspectives and questions before it searches and builds an outline (Shao et al., 2024). PaSa separates a Crawler that searches from a Selector that judges each paper against the request (He et al., 2025). In both cases the model does not simply answer from memory. This is important, because a model answering from memory can invent sources. Walters and Wilder (2023) found that 55% of the citations produced by GPT-3.5 and 18% of those produced by GPT-4 were fabricated.",
+            "The design decision our team made, and I then built, was a deterministic orchestrator with three agents. A Planning Agent (language model) breaks the question into sub-questions, a Retrieval Agent with no language model searches for papers, and an Evaluation and Synthesis Agent (language model) scores and summarises them. A researcher approves the plan before any search and the evidence before any writing, and every DOI is checked against Crossref. After our tutor's feedback, I changed the Retrieval Agent to search both OpenAlex and Semantic Scholar for every sub-question instead of using one as a fallback. This proved useful in the live runs. On 2 October Semantic Scholar refused every live search, and each run continued with OpenAlex and recorded the gap in its output instead of hiding it.",
+          ],
+          references: [
+            "He, Y. et al. (2025) 'PaSa: an LLM agent for comprehensive academic paper search', Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Vienna: Association for Computational Linguistics, pp. 11663-11679. Available at: https://doi.org/10.18653/v1/2025.acl-long.572",
+            "Jennings, N.R. (2000) 'On agent-based software engineering', Artificial Intelligence, 117(2), pp. 277-296. Available at: https://doi.org/10.1016/S0004-3702(99)00107-1",
+            "Parasuraman, R., Sheridan, T.B. and Wickens, C.D. (2000) 'A model for types and levels of human interaction with automation', IEEE Transactions on Systems, Man, and Cybernetics - Part A: Systems and Humans, 30(3), pp. 286-297. Available at: https://doi.org/10.1109/3468.844354",
+            "Shao, Y. et al. (2024) 'Assisting in writing Wikipedia-like articles from scratch with large language models', Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers). Mexico City: Association for Computational Linguistics, pp. 6252-6278. Available at: https://doi.org/10.18653/v1/2024.naacl-long.347",
+            "Walters, W.H. and Wilder, E.I. (2023) 'Fabrication and errors in the bibliographic citations generated by ChatGPT', Scientific Reports, 13, article 14045. Available at: https://doi.org/10.1038/s41598-023-41032-5",
+            "Wang, L. et al. (2024) 'A survey on large language model based autonomous agents', Frontiers of Computer Science, 18(6), article 186345. Available at: https://doi.org/10.1007/s11704-024-40231-1",
+            "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: theory and practice', The Knowledge Engineering Review, 10(2), pp. 115-152. Available at: https://doi.org/10.1017/S0269888900008122",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 2)",
+          author: "Lana Menezes Fidelis (in reply to Sergei Misjura)",
+          description:
+            "Response questioning whether a language-model-free Retrieval component qualifies as an agent, proposing claim-level source verification and structured review against automation bias, and asking what evidence threshold should trigger suspension during a retrieval-source outage.",
+          href: courseworkBlobUrl("coursework/week-02/peer-response-sergei.md"),
+          body: [
+            "Hello Sergei! Your distinction between autonomy and delegation with clear limits is particularly useful for organisations adopting research agents. Your reported Semantic Scholar failure also exposes an important trade-off: continuing with OpenAlex preserves availability, but does not establish that the resulting evidence base is sufficiently comprehensive.",
+            "One architectural question concerns whether all three components qualify as agents. Wooldridge and Jennings (1995) characterise agents through autonomy, reactivity, proactivity and social ability. A retrieval component does not require a language model to demonstrate these properties; however, if it simply executes prescribed searches, describing it as a service within an agent-based workflow may be more precise. This distinction helps organisations assess whether additional autonomy offers benefits that justify its complexity.",
+            "I would strengthen your safeguards in two ways. First, Crossref verification should be complemented by checking whether each source supports the associated claim. Walters and Wilder (2023) identified substantive bibliographic errors even among genuine references; consequently, confirming that a DOI exists cannot establish citation accuracy or evidential relevance. I would require the synthesis component to retain supporting passages and flag claims for which only abstracts were available.",
+            "Second, human approval should involve structured scrutiny. Parasuraman and Manzey (2010) show that automation bias can affect experienced users, making approval checkpoints insufficient by themselves. Presenting contradictory findings, retrieval gaps and supporting evidence alongside each recommendation could help reviewers make informed decisions.",
+            "To assess organisational value, I would compare your system against a simpler retrieval-and-synthesis workflow using an expert-reviewed set of questions. Relevant measures include missed relevant papers, unsupported claims, reviewer time and cost. During database outages, I would also require explicit acceptance of reduced coverage before synthesis proceeds.",
+            "What evidence threshold would trigger suspension rather than continued operation when a retrieval source becomes unavailable?",
+          ],
+          references: [
+            "Parasuraman, R. and Manzey, D.H. (2010) 'Complacency and bias in human use of automation: An attentional integration', Human Factors, 52(3), pp. 381-410. Available at: https://doi.org/10.1177/0018720810376055",
+            "Walters, W.H. and Wilder, E.I. (2023) 'Fabrication and errors in the bibliographic citations generated by ChatGPT', Scientific Reports, 13, article 14045. Available at: https://doi.org/10.1038/s41598-023-41032-5",
+            "Wooldridge, M. and Jennings, N.R. (1995) 'Intelligent agents: Theory and practice', The Knowledge Engineering Review, 10(2), pp. 115-152. Available at: https://doi.org/10.1017/S0269888900008122",
           ],
         },
       ],
@@ -200,8 +243,49 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
     week: 6,
     title: "Week 6",
     status: "complete",
-    summary: "Exercise: Creating Agent Dialogues (KQML/KIF).",
+    summary: "Discussion forum and exercise: Creating Agent Dialogues (KQML/KIF).",
     sections: [{
+      title: "Discussion Forum",
+      description:
+        "Peer's initial post on where to draw the line between deterministic method calls and KQML-style agent messaging, plus my response on KQML's weak formal semantics and FIPA-ACL as a successor.",
+      items: [
+        {
+          title: "Initial Post",
+          author: "Dragos Hont",
+          description:
+            "A practical boundary between deterministic internal operations (plain method calls) and autonomous goal interpretation (KQML-style messaging), grounded in Searle's (1969) speech act theory.",
+          href: courseworkBlobUrl("coursework/week-06/discussion-post-dragos.md"),
+          body: [
+            "A method call invokes a known operation through an agreed interface, so its purpose is already defined by the code. An agent message may need to express both its content and how the receiver should treat it. Searle (1969) separates propositional content from acts such as stating, questioning or commanding. KQML applies this distinction through a performative that makes the sender's intent explicit (Finin et al., 1994).",
+            "I would keep DOI deduplication as an ordinary Python method called by the orchestrator. It is deterministic within one controlled application, so KQML would add message handling and ontology agreement where no autonomous interpretation is needed.",
+            "I would use KQML-style messaging (Finin et al., 1994) when the Retrieval Agent asks the Planning Agent to reformulate a query. The performative perform marks reformulation as a requested action rather than a report of insufficient evidence, but different ontologies could still give that evidence different meanings (Payne and Tamma, 2014).",
+            "My boundary is practical. I would keep deterministic internal operations as method calls because their interfaces already define what should happen. I would use KQML-style messages where an autonomous agent must interpret a requested goal. This flexibility requires agreement on ontology and semantics, and the same terms may still be understood differently, so interoperability cannot be assumed (Payne and Tamma, 2014).",
+          ],
+          references: [
+            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', in Proceedings of the Third International Conference on Information and Knowledge Management. New York: ACM, pp. 456-463. doi:10.1145/191246.191322.",
+            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Richland, SC: International Foundation for Autonomous Agents and Multiagent Systems, pp. 517-524.",
+            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
+          ],
+        },
+        {
+          title: "Peer Response",
+          author: "Lana Menezes Fidelis (in reply to Dragos Hont)",
+          description:
+            "Response noting KQML's lack of rigorous formal semantics (Cohen and Levesque, 1995), FIPA-ACL as a more formally grounded successor, and Payne and Tamma's (2014) negotiation protocol as a more realistic safeguard than assuming a shared ontology upfront.",
+          href: courseworkBlobUrl("coursework/week-06/peer-response-dragos.md"),
+          body: [
+            "Thanks for a well-structured post, Dragos, the boundary you draw between deterministic operations and autonomous goal interpretation is a useful practical heuristic, and grounding it in Searle's (1969) speech act theory gives it theoretical weight rather than just being a coding convention.",
+            "One thing worth adding is that KQML's performatives, while making intent explicit, were criticised early on for lacking a rigorous formal semantics. Cohen and Levesque (1995) argued that KQML defined its speech acts largely through informal English descriptions, which meant two implementations could interpret the same performative (e.g. achieve or tell) inconsistently, essentially the same interoperability risk you flag via Payne and Tamma (2014), but occurring at the level of the language itself rather than just the ontology.",
+            "This is partly why FIPA-ACL (FIPA, 2002) followed, replacing KQML's ad hoc semantics with a semantic language grounded more formally in agents' beliefs and intentions. So a possible refinement to your practical boundary: even where you'd choose KQML-style messaging for the Retrieval-Planning Agent exchange, the specific dialect matters. FIPA-ACL's more constrained semantics would reduce (though not eliminate) the ambiguity you're already anticipating.",
+            "As a mitigation for the ontology mismatch you raise, Payne and Tamma's (2014) own negotiation protocol is instructive here: rather than assuming a shared ontology upfront, agents iteratively exchange candidate mappings and refine correspondences. That seems like a more realistic safeguard than a single agreed ontology, especially in an open multi-agent setting.",
+          ],
+          references: [
+            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', in Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95). Cambridge, MA: AAAI Press/MIT Press, pp. 65-72.",
+            "FIPA (2002) FIPA ACL Message Structure Specification. Geneva: Foundation for Intelligent Physical Agents.",
+          ],
+        },
+      ],
+    }, {
       title: "Activity: Creating Agent Dialogues",
       description:
         "A KQML/KIF dialogue between two agents, Alice (procurement) and Bob (warehouse stock control), querying stock levels and HDMI ports for 50-inch televisions.",
@@ -246,45 +330,10 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
     sections: [{
       title: "Discussion Forum",
       description:
-        "Two peer threads on where to draw the line between deterministic method calls and KQML-style agent messaging, plus my responses on KQML's weak formal semantics, FIPA-ACL, and the control-versus-autonomy trade-off.",
+        "Peer's initial post framing agent communication as a control-versus-autonomy trade-off, plus my response on the symbol grounding problem and FIPA-ACL's explicit ontology requirement.",
       items: [
         {
-          title: "Initial Post (Thread 1)",
-          author: "Dragos Hont",
-          description:
-            "A practical boundary between deterministic internal operations (plain method calls) and autonomous goal interpretation (KQML-style messaging), grounded in Searle's (1969) speech act theory.",
-          href: courseworkBlobUrl("coursework/week-07/discussion-post.md"),
-          body: [
-            "A method call invokes a known operation through an agreed interface, so its purpose is already defined by the code. An agent message may need to express both its content and how the receiver should treat it. Searle (1969) separates propositional content from acts such as stating, questioning or commanding. KQML applies this distinction through a performative that makes the sender's intent explicit (Finin et al., 1994).",
-            "I would keep DOI deduplication as an ordinary Python method called by the orchestrator. It is deterministic within one controlled application, so KQML would add message handling and ontology agreement where no autonomous interpretation is needed.",
-            "I would use KQML-style messaging (Finin et al., 1994) when the Retrieval Agent asks the Planning Agent to reformulate a query. The performative perform marks reformulation as a requested action rather than a report of insufficient evidence, but different ontologies could still give that evidence different meanings (Payne and Tamma, 2014).",
-            "My boundary is practical. I would keep deterministic internal operations as method calls because their interfaces already define what should happen. I would use KQML-style messages where an autonomous agent must interpret a requested goal. This flexibility requires agreement on ontology and semantics, and the same terms may still be understood differently, so interoperability cannot be assumed (Payne and Tamma, 2014).",
-          ],
-          references: [
-            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', in Proceedings of the Third International Conference on Information and Knowledge Management. New York: ACM, pp. 456-463. doi:10.1145/191246.191322.",
-            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Richland, SC: International Foundation for Autonomous Agents and Multiagent Systems, pp. 517-524.",
-            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
-          ],
-        },
-        {
-          title: "Peer Response (Thread 1)",
-          author: "Lana Menezes Fidelis (in reply to Dragos Hont)",
-          description:
-            "Response noting KQML's lack of rigorous formal semantics (Cohen and Levesque, 1995), FIPA-ACL as a more formally grounded successor, and Payne and Tamma's (2014) negotiation protocol as a more realistic safeguard than assuming a shared ontology upfront.",
-          href: courseworkBlobUrl("coursework/week-07/peer-response.md"),
-          body: [
-            "Thanks for a well-structured post, Dragos, the boundary you draw between deterministic operations and autonomous goal interpretation is a useful practical heuristic, and grounding it in Searle's (1969) speech act theory gives it theoretical weight rather than just being a coding convention.",
-            "One thing worth adding is that KQML's performatives, while making intent explicit, were criticised early on for lacking a rigorous formal semantics. Cohen and Levesque (1995) argued that KQML defined its speech acts largely through informal English descriptions, which meant two implementations could interpret the same performative (e.g. achieve or tell) inconsistently, essentially the same interoperability risk you flag via Payne and Tamma (2014), but occurring at the level of the language itself rather than just the ontology.",
-            "This is partly why FIPA-ACL (FIPA, 2002) followed, replacing KQML's ad hoc semantics with a semantic language grounded more formally in agents' beliefs and intentions. So a possible refinement to your practical boundary: even where you'd choose KQML-style messaging for the Retrieval-Planning Agent exchange, the specific dialect matters. FIPA-ACL's more constrained semantics would reduce (though not eliminate) the ambiguity you're already anticipating.",
-            "As a mitigation for the ontology mismatch you raise, Payne and Tamma's (2014) own negotiation protocol is instructive here: rather than assuming a shared ontology upfront, agents iteratively exchange candidate mappings and refine correspondences. That seems like a more realistic safeguard than a single agreed ontology, especially in an open multi-agent setting.",
-          ],
-          references: [
-            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', in Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95). Cambridge, MA: AAAI Press/MIT Press, pp. 65-72.",
-            "FIPA (2002) FIPA ACL Message Structure Specification. Geneva: Foundation for Intelligent Physical Agents.",
-          ],
-        },
-        {
-          title: "Initial Post (Thread 2)",
+          title: "Initial Post",
           author: "Yasmin Almeida Ferrera",
           description:
             "Frames the KQML-versus-method-invocation question as control versus autonomy, connecting ACLs to MCP and multi-agent LLM debate research.",
@@ -305,7 +354,7 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
         {
-          title: "Peer Response (Thread 2)",
+          title: "Peer Response",
           author: "Lana Menezes Fidelis (in reply to Yasmin Almeida Ferrera)",
           description:
             "Response linking Yasmin's control-versus-autonomy framing to the symbol grounding problem, FIPA-ACL's explicit ontology requirement, Jennings' (2000) flexibility/predictability trade-off, and the blurring of message/method-call boundaries in LLM-based agents.",
