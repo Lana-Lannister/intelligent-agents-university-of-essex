@@ -1,9 +1,9 @@
 # Week 04 coursework
 
-**Status:** ⬜ Not started.
+**Status:** ✅ Complete - Team Note.
 
 ## Files
 
-_None yet._ Place this week's raw artifacts here, one file per artifact (e.g. `discussion-post.md`, `peer-response.md`, `notebook.ipynb`, datasets, reports).
+- [`team-alignment-note.md`](team-alignment-note.md) - Note: Group D (Lana Menezes Fidelis, Lara Koller, Sergei Misjura, Dragos Hont) met to align on direction and responsibilities for the final project delivery ahead of the Week 7 design phase.
 
-Once added, mirror the content into a new `weekDetails[4]` entry in [`lib/weeks.ts`](../../lib/weeks.ts) so it renders on the e-portfolio site at `/weeks/4`, and list the files above and in [`coursework/README.md`](../README.md).
+Rendered on the e-portfolio site at `/weeks/4` (content mirrored into the `weekDetails[4]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).

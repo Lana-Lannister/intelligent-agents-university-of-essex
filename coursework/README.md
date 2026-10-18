@@ -9,10 +9,10 @@ This same content is mirrored into [`lib/weeks.ts`](../lib/weeks.ts) so it rende
 | [01](week-01/) | ✅ Complete | Discussion forum: [initial post](week-01/discussion-post.md) |
 | [02](week-02/) | ✅ Complete | Discussion forum: [initial post (Lara Koller)](week-02/discussion-post.md), [peer response](week-02/peer-response.md), [initial post (Sergei Misjura)](week-02/discussion-post-sergei.md), [peer response](week-02/peer-response-sergei.md) |
 | [03](week-03/) | ✅ Complete | Discussion forum: [summary post](week-03/summary-post.md) |
-| [04](week-04/) | ⬜ Not started | - |
+| [04](week-04/) | ✅ Complete | Team note: [meet-up and alignment (Group D)](week-04/team-alignment-note.md) |
 | [05](week-05/) | ✅ Complete | Discussion forum: [initial post](week-05/discussion-post.md) |
-| [06](week-06/) | ✅ Complete | Discussion forum: [initial post (Dragos Hont)](week-06/discussion-post-dragos.md), [peer response](week-06/peer-response-dragos.md); Activity: [agent dialogue (KQML/KIF)](week-06/agent-dialogue.md) |
-| [07](week-07/) | ✅ Discussion forum complete (project design outstanding) | [initial post (Yasmin Almeida Ferrera)](week-07/discussion-post-yasmin.md), [peer response](week-07/peer-response-yasmin.md) |
+| [06](week-06/) | ✅ Complete | Discussion forum: [initial post (Dragos Hont)](week-06/discussion-post-dragos.md), [peer response](week-06/peer-response-dragos.md), [initial post (Yasmin Almeida Ferrera)](week-06/discussion-post-yasmin.md), [peer response](week-06/peer-response-yasmin.md); Activity: [agent dialogue (KQML/KIF)](week-06/agent-dialogue.md) |
+| [07](week-07/) | ⬜ Not started | - |
 | [08](week-08/) | ✅ Complete | Activity: [constituency parse trees](week-08/parse-trees.md) |
 | [09](week-09/) | ✅ Complete | Discussion forum: [initial post](week-09/discussion-post.md) |
 | [10](week-10/) | ✅ Complete | Discussion forum: [initial post (Aldana Mohammed A A Al-Dosari)](week-10/discussion-post.md), [peer response](week-10/peer-response.md), [initial post (Anne Dayer)](week-10/discussion-post-anne.md), [peer response](week-10/peer-response-anne.md); Activity: [Deep Learning in Action](week-10/deep-learning-in-action.md) |

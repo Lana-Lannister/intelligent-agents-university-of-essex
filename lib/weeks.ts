@@ -209,6 +209,26 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
       ],
     }],
   },
+  4: {
+    week: 4,
+    title: "Week 4",
+    status: "complete",
+    summary: "Team meet-up and alignment for Group D's final project delivery.",
+    sections: [{
+      title: "Team Note",
+      description:
+        "Group D met to align on direction and responsibilities ahead of the Week 7 design phase.",
+      items: [
+        {
+          title: "Team Meet-up and Alignment",
+          author: "Group D: Lana Menezes Fidelis, Lara Koller, Sergei Misjura, Dragos Hont",
+          description:
+            "Group D met to align on direction and responsibilities for the final project delivery (Research Brief Agent) ahead of the Week 7 design phase.",
+          href: courseworkBlobUrl("coursework/week-04/team-alignment-note.md"),
+        },
+      ],
+    }],
+  },
   5: {
     week: 5,
     title: "Week 5",
@@ -245,47 +265,6 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
     status: "complete",
     summary: "Discussion forum and exercise: Creating Agent Dialogues (KQML/KIF).",
     sections: [{
-      title: "Discussion Forum",
-      description:
-        "Peer's initial post on where to draw the line between deterministic method calls and KQML-style agent messaging, plus my response on KQML's weak formal semantics and FIPA-ACL as a successor.",
-      items: [
-        {
-          title: "Initial Post",
-          author: "Dragos Hont",
-          description:
-            "A practical boundary between deterministic internal operations (plain method calls) and autonomous goal interpretation (KQML-style messaging), grounded in Searle's (1969) speech act theory.",
-          href: courseworkBlobUrl("coursework/week-06/discussion-post-dragos.md"),
-          body: [
-            "A method call invokes a known operation through an agreed interface, so its purpose is already defined by the code. An agent message may need to express both its content and how the receiver should treat it. Searle (1969) separates propositional content from acts such as stating, questioning or commanding. KQML applies this distinction through a performative that makes the sender's intent explicit (Finin et al., 1994).",
-            "I would keep DOI deduplication as an ordinary Python method called by the orchestrator. It is deterministic within one controlled application, so KQML would add message handling and ontology agreement where no autonomous interpretation is needed.",
-            "I would use KQML-style messaging (Finin et al., 1994) when the Retrieval Agent asks the Planning Agent to reformulate a query. The performative perform marks reformulation as a requested action rather than a report of insufficient evidence, but different ontologies could still give that evidence different meanings (Payne and Tamma, 2014).",
-            "My boundary is practical. I would keep deterministic internal operations as method calls because their interfaces already define what should happen. I would use KQML-style messages where an autonomous agent must interpret a requested goal. This flexibility requires agreement on ontology and semantics, and the same terms may still be understood differently, so interoperability cannot be assumed (Payne and Tamma, 2014).",
-          ],
-          references: [
-            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', in Proceedings of the Third International Conference on Information and Knowledge Management. New York: ACM, pp. 456-463. doi:10.1145/191246.191322.",
-            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Richland, SC: International Foundation for Autonomous Agents and Multiagent Systems, pp. 517-524.",
-            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
-          ],
-        },
-        {
-          title: "Peer Response",
-          author: "Lana Menezes Fidelis (in reply to Dragos Hont)",
-          description:
-            "Response noting KQML's lack of rigorous formal semantics (Cohen and Levesque, 1995), FIPA-ACL as a more formally grounded successor, and Payne and Tamma's (2014) negotiation protocol as a more realistic safeguard than assuming a shared ontology upfront.",
-          href: courseworkBlobUrl("coursework/week-06/peer-response-dragos.md"),
-          body: [
-            "Thanks for a well-structured post, Dragos, the boundary you draw between deterministic operations and autonomous goal interpretation is a useful practical heuristic, and grounding it in Searle's (1969) speech act theory gives it theoretical weight rather than just being a coding convention.",
-            "One thing worth adding is that KQML's performatives, while making intent explicit, were criticised early on for lacking a rigorous formal semantics. Cohen and Levesque (1995) argued that KQML defined its speech acts largely through informal English descriptions, which meant two implementations could interpret the same performative (e.g. achieve or tell) inconsistently, essentially the same interoperability risk you flag via Payne and Tamma (2014), but occurring at the level of the language itself rather than just the ontology.",
-            "This is partly why FIPA-ACL (FIPA, 2002) followed, replacing KQML's ad hoc semantics with a semantic language grounded more formally in agents' beliefs and intentions. So a possible refinement to your practical boundary: even where you'd choose KQML-style messaging for the Retrieval-Planning Agent exchange, the specific dialect matters. FIPA-ACL's more constrained semantics would reduce (though not eliminate) the ambiguity you're already anticipating.",
-            "As a mitigation for the ontology mismatch you raise, Payne and Tamma's (2014) own negotiation protocol is instructive here: rather than assuming a shared ontology upfront, agents iteratively exchange candidate mappings and refine correspondences. That seems like a more realistic safeguard than a single agreed ontology, especially in an open multi-agent setting.",
-          ],
-          references: [
-            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', in Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95). Cambridge, MA: AAAI Press/MIT Press, pp. 65-72.",
-            "FIPA (2002) FIPA ACL Message Structure Specification. Geneva: Foundation for Intelligent Physical Agents.",
-          ],
-        },
-      ],
-    }, {
       title: "Activity: Creating Agent Dialogues",
       description:
         "A KQML/KIF dialogue between two agents, Alice (procurement) and Bob (warehouse stock control), querying stock levels and HDMI ports for 50-inch televisions.",
@@ -320,24 +299,52 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
       ],
-    }],
-  },
-  7: {
-    week: 7,
-    title: "Week 7",
-    status: "in-progress",
-    summary: "Discussion forum complete; project design phase outstanding.",
-    sections: [{
+    }, {
       title: "Discussion Forum",
       description:
-        "Peer's initial post framing agent communication as a control-versus-autonomy trade-off, plus my response on the symbol grounding problem and FIPA-ACL's explicit ontology requirement.",
+        "Two peer threads on where to draw the line between deterministic method calls and KQML-style agent messaging, plus my responses on KQML's weak formal semantics, FIPA-ACL, and the control-versus-autonomy trade-off.",
       items: [
         {
-          title: "Initial Post",
+          title: "Initial Post (Thread 1)",
+          author: "Dragos Hont",
+          description:
+            "A practical boundary between deterministic internal operations (plain method calls) and autonomous goal interpretation (KQML-style messaging), grounded in Searle's (1969) speech act theory.",
+          href: courseworkBlobUrl("coursework/week-06/discussion-post-dragos.md"),
+          body: [
+            "A method call invokes a known operation through an agreed interface, so its purpose is already defined by the code. An agent message may need to express both its content and how the receiver should treat it. Searle (1969) separates propositional content from acts such as stating, questioning or commanding. KQML applies this distinction through a performative that makes the sender's intent explicit (Finin et al., 1994).",
+            "I would keep DOI deduplication as an ordinary Python method called by the orchestrator. It is deterministic within one controlled application, so KQML would add message handling and ontology agreement where no autonomous interpretation is needed.",
+            "I would use KQML-style messaging (Finin et al., 1994) when the Retrieval Agent asks the Planning Agent to reformulate a query. The performative perform marks reformulation as a requested action rather than a report of insufficient evidence, but different ontologies could still give that evidence different meanings (Payne and Tamma, 2014).",
+            "My boundary is practical. I would keep deterministic internal operations as method calls because their interfaces already define what should happen. I would use KQML-style messages where an autonomous agent must interpret a requested goal. This flexibility requires agreement on ontology and semantics, and the same terms may still be understood differently, so interoperability cannot be assumed (Payne and Tamma, 2014).",
+          ],
+          references: [
+            "Finin, T., Fritzson, R., McKay, D. and McEntire, R. (1994) 'KQML as an agent communication language', in Proceedings of the Third International Conference on Information and Knowledge Management. New York: ACM, pp. 456-463. doi:10.1145/191246.191322.",
+            "Payne, T.R. and Tamma, V. (2014) 'Negotiating over ontological correspondences with asymmetric and incomplete knowledge', in Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems. Richland, SC: International Foundation for Autonomous Agents and Multiagent Systems, pp. 517-524.",
+            "Searle, J.R. (1969) Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.",
+          ],
+        },
+        {
+          title: "Peer Response (Thread 1)",
+          author: "Lana Menezes Fidelis (in reply to Dragos Hont)",
+          description:
+            "Response noting KQML's lack of rigorous formal semantics (Cohen and Levesque, 1995), FIPA-ACL as a more formally grounded successor, and Payne and Tamma's (2014) negotiation protocol as a more realistic safeguard than assuming a shared ontology upfront.",
+          href: courseworkBlobUrl("coursework/week-06/peer-response-dragos.md"),
+          body: [
+            "Thanks for a well-structured post, Dragos, the boundary you draw between deterministic operations and autonomous goal interpretation is a useful practical heuristic, and grounding it in Searle's (1969) speech act theory gives it theoretical weight rather than just being a coding convention.",
+            "One thing worth adding is that KQML's performatives, while making intent explicit, were criticised early on for lacking a rigorous formal semantics. Cohen and Levesque (1995) argued that KQML defined its speech acts largely through informal English descriptions, which meant two implementations could interpret the same performative (e.g. achieve or tell) inconsistently, essentially the same interoperability risk you flag via Payne and Tamma (2014), but occurring at the level of the language itself rather than just the ontology.",
+            "This is partly why FIPA-ACL (FIPA, 2002) followed, replacing KQML's ad hoc semantics with a semantic language grounded more formally in agents' beliefs and intentions. So a possible refinement to your practical boundary: even where you'd choose KQML-style messaging for the Retrieval-Planning Agent exchange, the specific dialect matters. FIPA-ACL's more constrained semantics would reduce (though not eliminate) the ambiguity you're already anticipating.",
+            "As a mitigation for the ontology mismatch you raise, Payne and Tamma's (2014) own negotiation protocol is instructive here: rather than assuming a shared ontology upfront, agents iteratively exchange candidate mappings and refine correspondences. That seems like a more realistic safeguard than a single agreed ontology, especially in an open multi-agent setting.",
+          ],
+          references: [
+            "Cohen, P.R. and Levesque, H.J. (1995) 'Communicative actions for artificial agents', in Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95). Cambridge, MA: AAAI Press/MIT Press, pp. 65-72.",
+            "FIPA (2002) FIPA ACL Message Structure Specification. Geneva: Foundation for Intelligent Physical Agents.",
+          ],
+        },
+        {
+          title: "Initial Post (Thread 2)",
           author: "Yasmin Almeida Ferrera",
           description:
             "Frames the KQML-versus-method-invocation question as control versus autonomy, connecting ACLs to MCP and multi-agent LLM debate research.",
-          href: courseworkBlobUrl("coursework/week-07/discussion-post-yasmin.md"),
+          href: courseworkBlobUrl("coursework/week-06/discussion-post-yasmin.md"),
           body: [
             "Agent Communication Languages (ACLs), such as KQML, were developed to allow autonomous agents to communicate through messages representing actions such as requests, questions and information sharing (Labrou and Finin, 2000). This is fundamentally different from method invocation in Python or Java. When a Python or Java programme calls a method, the developer normally knows exactly which operation is being requested, what inputs it requires and what type of result should be returned. With KQML, the focus is instead on communicating an intention, allowing the receiving agent to decide how to respond.",
             "This is where I see both the main strength and weakness of ACLs. They can make a system much more flexible because agents do not need to know the internal implementation of other agents. This is particularly useful when agents are independent or distributed. However, the same autonomy can make the system harder to control. Communication requires additional processing, and the outcome may not be as predictable as a direct method call.",
@@ -354,11 +361,11 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
           ],
         },
         {
-          title: "Peer Response",
+          title: "Peer Response (Thread 2)",
           author: "Lana Menezes Fidelis (in reply to Yasmin Almeida Ferrera)",
           description:
             "Response linking Yasmin's control-versus-autonomy framing to the symbol grounding problem, FIPA-ACL's explicit ontology requirement, Jennings' (2000) flexibility/predictability trade-off, and the blurring of message/method-call boundaries in LLM-based agents.",
-          href: courseworkBlobUrl("coursework/week-07/peer-response-yasmin.md"),
+          href: courseworkBlobUrl("coursework/week-06/peer-response-yasmin.md"),
           body: [
             "Hello Yasmin! Framing the trade-off as control versus autonomy is a clear way to cut through the KQML-versus-method-call comparison, and connecting it to MCP and multi-agent debate research (Du et al., 2024) makes a strong case that the underlying design question has outlived the original ACL technology.",
             "I would push a little further on the \"communication does not equal understanding\" point. This is essentially the symbol grounding problem in a distributed setting: even with a shared protocol like KQML, performatives only specify the type of speech act, not the meaning of the terms inside the message content (Chaib-draa and Dignum, 2002). FIPA-ACL tried to address part of this by requiring agents to share content languages and ontologies explicitly rather than assuming them, though as your Malik and Malik (2018) reference suggests, semantic web style ontology alignment does not fully eliminate the risk of divergent interpretation. Wooldridge (2009) makes a related point that agent communication only works reliably when agents share a common mental model of the world, something that cannot be guaranteed simply by agreeing on a message syntax.",
@@ -373,6 +380,12 @@ const weekDetails: Partial<Record<number, WeekDetail>> = {
         },
       ],
     }],
+  },
+  7: {
+    week: 7,
+    title: "Week 7",
+    status: "not-started",
+    summary: "Project design phase outstanding.",
   },
   8: {
     week: 8,
