@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { AssessmentInfo } from "@/lib/weeks";
 import { slugify } from "@/lib/weeks";
 
@@ -56,6 +57,26 @@ export default function ContentSection({ section }: { section: AssessmentInfo })
                 </svg>
                 View {item.title} on GitHub
               </a>
+            ) : null}
+            {item.images ? (
+              <div className="mt-4 flex flex-col gap-4 border-t border-zinc-200 pt-4">
+                {item.images.map((image) => (
+                  <figure key={image.src} className="flex flex-col gap-2">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      className="h-auto w-full rounded-md border border-zinc-200"
+                    />
+                    {image.caption ? (
+                      <figcaption className="text-center text-xs text-zinc-500">
+                        {image.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ))}
+              </div>
             ) : null}
             {item.code ? (
               <div className="mt-4 flex flex-col gap-3 border-t border-zinc-200 pt-4">

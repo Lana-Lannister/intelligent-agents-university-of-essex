@@ -12,16 +12,16 @@ This same content is mirrored into [`lib/weeks.ts`](../lib/weeks.ts) so it rende
 | [04](week-04/) | ✅ Complete | Team note: [meet-up and alignment (Group D)](week-04/team-alignment-note.md) |
 | [05](week-05/) | ✅ Complete | Discussion forum: [initial post](week-05/discussion-post.md) |
 | [06](week-06/) | ✅ Complete | Discussion forum: [initial post (Dragos Hont)](week-06/discussion-post-dragos.md), [peer response](week-06/peer-response-dragos.md), [initial post (Yasmin Almeida Ferrera)](week-06/discussion-post-yasmin.md), [peer response](week-06/peer-response-yasmin.md); Activity: [agent dialogue (KQML/KIF)](week-06/agent-dialogue.md) |
-| [07](week-07/) | ✅ Complete | [summary post](week-07/summary-post.md); Team note: [Group D delivery outcome](week-07/team-note.md) |
+| [07](week-07/) | ✅ Complete | Final project design: [Group D project report](week-07/project-report.md); Discussion forum: [summary post](week-07/summary-post.md); Team note: [Group D delivery outcome](week-07/team-note.md) |
 | [08](week-08/) | ✅ Complete | Activity: [constituency parse trees](week-08/parse-trees.md) |
 | [09](week-09/) | ✅ Complete | Discussion forum: [initial post](week-09/discussion-post.md) |
 | [10](week-10/) | ✅ Complete | Discussion forum: [initial post (Aldana Mohammed A A Al-Dosari)](week-10/discussion-post.md), [peer response](week-10/peer-response.md), [initial post (Anne Dayer)](week-10/discussion-post-anne.md), [peer response](week-10/peer-response-anne.md); Activity: [Deep Learning in Action](week-10/deep-learning-in-action.md) |
 | [11](week-11/) | ✅ Complete | Discussion forum: [summary post](week-11/summary-post.md); Implemented solution: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent) |
-| [12](week-12/) | ⬜ Not started | - |
+| [12](week-12/) | ✅ Complete | Unit 12 submission: [full reflective piece](week-12/reflective-piece.md) (commentary + 3 case studies) |
 
 In addition to the 12 weeks above, the e-portfolio has two cross-cutting sections required by the module brief:
 
 | Section | Status | Contents |
 | ------- | ------ | -------- |
-| [Final Project](project/) | ⬜ Design and critical evaluation outstanding (implementation complete) | Implementation: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent); design ([Week 7](week-07/)) still outstanding |
-| [Reflections](reflections/) | ⬜ Commentary complete; 3 case studies outstanding | [Reflective commentary](reflections/commentary.md); case studies (bias, AI safety, XAI) still to be written |
+| [Final Project](project/) | ✅ Complete | Design: [Group D project report](week-07/project-report.md); Implementation: [Research Brief Agent](https://github.com/Lana-Lannister/research-brief-agent); [critical evaluation](project/) comparing both |
+| [Reflections](reflections/) | ✅ Complete | [Reflective commentary](reflections/commentary.md); [bias](reflections/case-study-bias.md), [AI safety](reflections/case-study-ai-safety.md) and [XAI](reflections/case-study-xai.md) case studies |

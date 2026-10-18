@@ -1,15 +1,14 @@
 # Final Project
 
-**Status:** ⬜ Design phase and critical evaluation outstanding; implementation phase complete.
+**Status:** ✅ Complete.
 
-Critical evaluation of the final group project, covering both the design phase (Week 7) and the implemented solution (Week 11).
+Critical evaluation of the final group project, covering both the design phase (Week 7, Group D's project report) and the implemented solution (Week 11, Research Brief Agent).
 
-## Implementation
+## Design and implementation
 
-The implemented solution is **Research Brief Agent**: https://github.com/Lana-Lannister/research-brief-agent - an individual implementation of the group's design. See [`coursework/week-11/README.md`](../week-11/README.md) and `/weeks/11` on the site for the full architecture writeup.
+- Design: [`coursework/week-07/project-report.md`](../week-07/project-report.md) - Group D's project report.
+- Implementation: **Research Brief Agent** - https://github.com/Lana-Lannister/research-brief-agent - my individual implementation of the design. See [`coursework/week-11/README.md`](../week-11/README.md) and `/weeks/11` on the site for the full architecture writeup.
 
-## Files
+## Critical evaluation
 
-_Design artifacts (system diagrams, agent role definitions) still to be added to [`coursework/week-07/`](../week-07/)._ This folder is for the cross-cutting critical evaluation comparing the design and implementation phases, still to be written.
-
-Rendered on the e-portfolio site at `/project` (content mirrored into [`lib/project.ts`](../../lib/project.ts)).
+Rendered on the e-portfolio site at `/project` (content mirrored into [`lib/project.ts`](../../lib/project.ts)): compares the design and implementation phases, identifies one substantive divergence (dual-source retrieval adopted after a live Semantic Scholar outage, in place of the designed fallback strategy), and reflects on individual contribution to the group's design.

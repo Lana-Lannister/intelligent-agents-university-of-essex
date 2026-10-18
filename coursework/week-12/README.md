@@ -1,9 +1,13 @@
 # Week 12 coursework
 
-**Status:** ⬜ Not started.
+**Status:** ✅ Complete - Unit 12: Individual e-Portfolio Submission.
+
+Week 12 is the module's final assessment: the individual e-portfolio submission, including the required reflective piece.
 
 ## Files
 
-_None yet._ Place this week's raw artifacts here, one file per artifact (e.g. `discussion-post.md`, `peer-response.md`, `notebook.ipynb`, datasets, reports).
+- [`reflective-piece.md`](reflective-piece.md) - the full reflective piece: reflective commentary (~900 words) plus all three Rolfe et al. (2001) case studies (bias, AI safety, XAI), copied in full here rather than just linked.
 
-Once added, mirror the content into a new `weekDetails[12]` entry in [`lib/weeks.ts`](../../lib/weeks.ts) so it renders on the e-portfolio site at `/weeks/12`, and list the files above and in [`coursework/README.md`](../README.md).
+This content is also the source of truth for [`coursework/reflections/`](../reflections/) (commentary.md, case-study-bias.md, case-study-ai-safety.md, case-study-xai.md), rendered on the e-portfolio site at both `/weeks/12` and `/reflections`.
+
+Rendered on the e-portfolio site at `/weeks/12` (content mirrored into the `weekDetails[12]` entry in [`lib/weeks.ts`](../../lib/weeks.ts)).
