@@ -2,6 +2,10 @@
 
 **Author:** Lana Menezes Fidelis
 
+## Introduction
+
+This commentary reflects on the skills, knowledge and understanding I developed across the Intelligent Agents module, structured using Rolfe, Freshwater and Jasper's (2001) What / So what / Now what framework to connect specific module experiences, forum debate, group collaboration, and building Research Brief Agent, to their practical and professional implications.
+
 ## What
 
 Across this module I worked through the conceptual foundations of agent-based computing (Wooldridge and Jennings, 1995), practical exercises in agent communication (KQML/KIF dialogues, Week 6) and natural language structure (constituency parsing, Week 8), and a sustained thread of discussion-forum debate on agent communication languages, generative AI ethics, and responsible deployment (Weeks 2, 3, 5, 7, 9, 10, 11). The module culminated in a group project with Lara Koller, Sergei Misjura and Dragos Hont, where I individually implemented Research Brief Agent, a multi-agent literature-retrieval system built around a deterministic orchestrator, a Planning Agent, a Retrieval Agent, and an Evaluation and Synthesis Agent, bounded by human checkpoints and strict output grounding (Week 11).
@@ -19,6 +23,10 @@ Emotionally, I was engaged and genuinely excited through almost the entire modul
 ## Now what
 
 Three things from this module will carry into how I build agent-based systems afterwards. First, I will treat peer critique of a design decision as a required step, not an optional one; the single biggest improvement in my own reasoning (Week 3) came directly from having to answer other people's objections in writing. Second, I will keep deliberately working in culturally mixed teams where possible, because the friction Gibson and Gibbs (2006) describe is where I learned the most about communicating technical disagreement clearly rather than defensively. Third, I will keep building systems that fail closed under uncertainty rather than ship a confident-looking but ungrounded result, which is the single technical habit from this module I am most confident is correct, and the one I am least willing to compromise on in future work.
+
+## Conclusion
+
+Taken together, these experiences changed not just what I know about agent-based systems, but how I now expect myself to work: debating design decisions with others before committing to them, treating team diversity as a skill to practise rather than a constraint to manage, and designing for safe failure rather than confident failure.
 
 ## References
 

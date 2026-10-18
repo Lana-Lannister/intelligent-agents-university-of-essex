@@ -13,9 +13,9 @@ export default function ReflectionsPage() {
         <h1 className="text-2xl font-semibold text-zinc-900">Reflections</h1>
         <p className="mt-2 text-zinc-600">
           Reflective commentary on the skills and understanding developed
-          during the module, plus three formative case studies structured
-          using Rolfe, Freshwater and Jasper&apos;s (2001) What / So what / Now
-          what framework.
+          during the module, structured using Rolfe, Freshwater and
+          Jasper&apos;s (2001) What / So what / Now what framework, plus
+          three formative case studies grounded in my own practical work.
         </p>
       </div>
 
@@ -26,8 +26,21 @@ export default function ReflectionsPage() {
           </h2>
           <StatusBadge status={reflectiveCommentary.status} />
         </div>
+        {reflectiveCommentary.intro.map((paragraph, index) => (
+          <p key={index} className="text-sm italic leading-relaxed text-zinc-600">
+            {paragraph}
+          </p>
+        ))}
         {reflectiveCommentary.body.map((paragraph, index) => (
           <p key={index} className="text-sm leading-relaxed text-zinc-800">
+            {paragraph}
+          </p>
+        ))}
+        {reflectiveCommentary.conclusion.map((paragraph, index) => (
+          <p
+            key={index}
+            className="border-t border-zinc-200 pt-4 text-sm leading-relaxed text-zinc-800"
+          >
             {paragraph}
           </p>
         ))}
@@ -64,25 +77,23 @@ export default function ReflectionsPage() {
               </div>
               <StatusBadge status={caseStudy.status} />
             </div>
-            {caseStudy.sections.map((section) => (
-              <div
-                key={section.heading}
-                className="rounded-lg border border-zinc-100 bg-zinc-50 p-4"
+            {caseStudy.intro.map((paragraph, index) => (
+              <p key={index} className="text-sm italic leading-relaxed text-zinc-600">
+                {paragraph}
+              </p>
+            ))}
+            {caseStudy.body.map((paragraph, index) => (
+              <p key={index} className="text-sm leading-relaxed text-zinc-800">
+                {paragraph}
+              </p>
+            ))}
+            {caseStudy.conclusion.map((paragraph, index) => (
+              <p
+                key={index}
+                className="border-t border-zinc-200 pt-4 text-sm leading-relaxed text-zinc-800"
               >
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
-                  {section.heading}
-                </h3>
-                <div className="mt-2 flex flex-col gap-2">
-                  {section.body.map((paragraph, index) => (
-                    <p
-                      key={index}
-                      className="text-sm leading-relaxed text-zinc-800"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
+                {paragraph}
+              </p>
             ))}
             {caseStudy.references && caseStudy.references.length > 0 ? (
               <div className="border-t border-zinc-200 pt-4">
